@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  LastFM
 //
-//  Created by mac on 1/22/20.
+//  Created by Magdy Kamal on 1/22/20.
 //  Copyright © 2020 OwnProjects. All rights reserved.
 //
 
@@ -34,4 +34,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
 

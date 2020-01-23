@@ -3,18 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0472049523D7B4E00086B7B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472049423D7B4E00086B7B0 /* AppDelegate.swift */; };
-		0472049723D7B4E00086B7B0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472049623D7B4E00086B7B0 /* SceneDelegate.swift */; };
-		0472049923D7B4E00086B7B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472049823D7B4E00086B7B0 /* ContentView.swift */; };
 		0472049B23D7B4E20086B7B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0472049A23D7B4E20086B7B0 /* Assets.xcassets */; };
-		0472049E23D7B4E20086B7B0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0472049D23D7B4E20086B7B0 /* Preview Assets.xcassets */; };
 		047204A123D7B4E20086B7B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0472049F23D7B4E20086B7B0 /* LaunchScreen.storyboard */; };
 		047204AC23D7B4E20086B7B0 /* LastFMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047204AB23D7B4E20086B7B0 /* LastFMTests.swift */; };
 		047204B723D7B4E20086B7B0 /* LastFMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047204B623D7B4E20086B7B0 /* LastFMUITests.swift */; };
+		04EE185323D900E900F1E4B3 /* ErrorTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE185223D900E900F1E4B3 /* ErrorTypes.swift */; };
+		04EE185523D9012000F1E4B3 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE185423D9012000F1E4B3 /* RequestMethod.swift */; };
+		04EE185723D901E200F1E4B3 /* RequestHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE185623D901E200F1E4B3 /* RequestHandlerProtocol.swift */; };
+		04EE185923D9025400F1E4B3 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE185823D9025400F1E4B3 /* ErrorModel.swift */; };
+		04EE185B23D9028500F1E4B3 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE185A23D9028500F1E4B3 /* ResultModel.swift */; };
+		04EE186123D903E300F1E4B3 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE186023D903E300F1E4B3 /* NetworkManagerProtocol.swift */; };
+		04EE186323D9062700F1E4B3 /* CachingManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE186223D9062700F1E4B3 /* CachingManagerProtocol.swift */; };
+		04EE186523D9077500F1E4B3 /* ParserHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE186423D9077500F1E4B3 /* ParserHandlerProtocol.swift */; };
+		04EE186723D907BA00F1E4B3 /* CodableParserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE186623D907BA00F1E4B3 /* CodableParserManager.swift */; };
+		04EE186923D9089D00F1E4B3 /* AlamofireApiClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE186823D9089D00F1E4B3 /* AlamofireApiClientManager.swift */; };
+		04EE186B23D909C900F1E4B3 /* RealmCachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE186A23D909C900F1E4B3 /* RealmCachingManager.swift */; };
 		723327585D7F7B2558661E14 /* Pods_LastFM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8935F1C12E6EDB9498B913 /* Pods_LastFM.framework */; };
 		BCF5FE3329A02AF65C3E9B27 /* Pods_LastFMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156063B18FBE66E9575D134C /* Pods_LastFMTests.framework */; };
 		CD9CA0A56FA28C08D8699CDD /* Pods_LastFM_LastFMUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2398460075EAA83D591B2CE6 /* Pods_LastFM_LastFMUITests.framework */; };
@@ -40,10 +48,7 @@
 /* Begin PBXFileReference section */
 		0472049123D7B4E00086B7B0 /* LastFM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LastFM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0472049423D7B4E00086B7B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0472049623D7B4E00086B7B0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0472049823D7B4E00086B7B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0472049A23D7B4E20086B7B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0472049D23D7B4E20086B7B0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		047204A023D7B4E20086B7B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		047204A223D7B4E20086B7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		047204A723D7B4E20086B7B0 /* LastFMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LastFMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +57,17 @@
 		047204B223D7B4E20086B7B0 /* LastFMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LastFMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		047204B623D7B4E20086B7B0 /* LastFMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFMUITests.swift; sourceTree = "<group>"; };
 		047204B823D7B4E20086B7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04EE185223D900E900F1E4B3 /* ErrorTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTypes.swift; sourceTree = "<group>"; };
+		04EE185423D9012000F1E4B3 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
+		04EE185623D901E200F1E4B3 /* RequestHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandlerProtocol.swift; sourceTree = "<group>"; };
+		04EE185823D9025400F1E4B3 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		04EE185A23D9028500F1E4B3 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
+		04EE186023D903E300F1E4B3 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
+		04EE186223D9062700F1E4B3 /* CachingManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingManagerProtocol.swift; sourceTree = "<group>"; };
+		04EE186423D9077500F1E4B3 /* ParserHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserHandlerProtocol.swift; sourceTree = "<group>"; };
+		04EE186623D907BA00F1E4B3 /* CodableParserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableParserManager.swift; sourceTree = "<group>"; };
+		04EE186823D9089D00F1E4B3 /* AlamofireApiClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireApiClientManager.swift; sourceTree = "<group>"; };
+		04EE186A23D909C900F1E4B3 /* RealmCachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCachingManager.swift; sourceTree = "<group>"; };
 		156063B18FBE66E9575D134C /* Pods_LastFMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LastFMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2398460075EAA83D591B2CE6 /* Pods_LastFM_LastFMUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LastFM_LastFMUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AEEC72A213B4A4AC4236AA1 /* Pods-LastFM-LastFMUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LastFM-LastFMUITests.debug.xcconfig"; path = "Target Support Files/Pods-LastFM-LastFMUITests/Pods-LastFM-LastFMUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,23 +132,13 @@
 		0472049323D7B4E00086B7B0 /* LastFM */ = {
 			isa = PBXGroup;
 			children = (
+				04EE184D23D9002D00F1E4B3 /* Network */,
 				0472049423D7B4E00086B7B0 /* AppDelegate.swift */,
-				0472049623D7B4E00086B7B0 /* SceneDelegate.swift */,
-				0472049823D7B4E00086B7B0 /* ContentView.swift */,
 				0472049A23D7B4E20086B7B0 /* Assets.xcassets */,
 				0472049F23D7B4E20086B7B0 /* LaunchScreen.storyboard */,
 				047204A223D7B4E20086B7B0 /* Info.plist */,
-				0472049C23D7B4E20086B7B0 /* Preview Content */,
 			);
 			path = LastFM;
-			sourceTree = "<group>";
-		};
-		0472049C23D7B4E20086B7B0 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				0472049D23D7B4E20086B7B0 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		047204AA23D7B4E20086B7B0 /* LastFMTests */ = {
@@ -153,6 +159,56 @@
 			path = LastFMUITests;
 			sourceTree = "<group>";
 		};
+		04EE184D23D9002D00F1E4B3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				04EE185123D900BF00F1E4B3 /* Utilities */,
+				04EE185023D9008200F1E4B3 /* Protocols */,
+				04EE184F23D9006E00F1E4B3 /* Managers */,
+				04EE184E23D9006500F1E4B3 /* Models */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		04EE184E23D9006500F1E4B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04EE185823D9025400F1E4B3 /* ErrorModel.swift */,
+				04EE185A23D9028500F1E4B3 /* ResultModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		04EE184F23D9006E00F1E4B3 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				04EE186623D907BA00F1E4B3 /* CodableParserManager.swift */,
+				04EE186823D9089D00F1E4B3 /* AlamofireApiClientManager.swift */,
+				04EE186A23D909C900F1E4B3 /* RealmCachingManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		04EE185023D9008200F1E4B3 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				04EE185623D901E200F1E4B3 /* RequestHandlerProtocol.swift */,
+				04EE186023D903E300F1E4B3 /* NetworkManagerProtocol.swift */,
+				04EE186223D9062700F1E4B3 /* CachingManagerProtocol.swift */,
+				04EE186423D9077500F1E4B3 /* ParserHandlerProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		04EE185123D900BF00F1E4B3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				04EE185223D900E900F1E4B3 /* ErrorTypes.swift */,
+				04EE185423D9012000F1E4B3 /* RequestMethod.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		85ED45CDAC7A95BABF79EF28 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,7 +219,6 @@
 				B2C8B1F076994C243A772AF8 /* Pods-LastFMTests.debug.xcconfig */,
 				E08DA25F2911E2F23A991061 /* Pods-LastFMTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -287,7 +342,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				047204A123D7B4E20086B7B0 /* LaunchScreen.storyboard in Resources */,
-				0472049E23D7B4E20086B7B0 /* Preview Assets.xcassets in Resources */,
 				0472049B23D7B4E20086B7B0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,9 +470,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EE185923D9025400F1E4B3 /* ErrorModel.swift in Sources */,
+				04EE186B23D909C900F1E4B3 /* RealmCachingManager.swift in Sources */,
+				04EE186323D9062700F1E4B3 /* CachingManagerProtocol.swift in Sources */,
+				04EE185723D901E200F1E4B3 /* RequestHandlerProtocol.swift in Sources */,
+				04EE185B23D9028500F1E4B3 /* ResultModel.swift in Sources */,
+				04EE186923D9089D00F1E4B3 /* AlamofireApiClientManager.swift in Sources */,
+				04EE186123D903E300F1E4B3 /* NetworkManagerProtocol.swift in Sources */,
+				04EE185323D900E900F1E4B3 /* ErrorTypes.swift in Sources */,
+				04EE186723D907BA00F1E4B3 /* CodableParserManager.swift in Sources */,
+				04EE185523D9012000F1E4B3 /* RequestMethod.swift in Sources */,
 				0472049523D7B4E00086B7B0 /* AppDelegate.swift in Sources */,
-				0472049723D7B4E00086B7B0 /* SceneDelegate.swift in Sources */,
-				0472049923D7B4E00086B7B0 /* ContentView.swift in Sources */,
+				04EE186523D9077500F1E4B3 /* ParserHandlerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,7 +648,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"LastFM/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = J685J65365;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = LastFM/Info.plist;
@@ -606,7 +669,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"LastFM/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = J685J65365;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = LastFM/Info.plist;
