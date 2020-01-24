@@ -21,26 +21,25 @@ struct ArtistResponseModel: Decodable {
     struct ArtistMatchesModel: Decodable {
         var artist: [ArtistModel]?
     }
-    
-    struct ArtistModel: Decodable {
-        var name: String?
-        var images: [ImageModel]?
-        var listeners: String?
-        var id: String?
-        enum CodingKeys: String, CodingKey {
-            case id     = "mbid"
-            case images = "image"
-            case name
-            case listeners
-        }
-        
-    }
-    
-    struct ImageModel: Decodable {
-        var url: String?
+}
 
-        enum CodingKeys: String, CodingKey {
-            case url    = "#text"
-        }
+struct ArtistModel: Decodable {
+    var name: String?
+    var images: [ImageModel]?
+    var listeners: String?
+    var id: String?
+    enum CodingKeys: String, CodingKey {
+        case id     = "mbid"
+        case images = "image"
+        case name
+        case listeners
+    }
+}
+
+struct ImageModel: Decodable {
+    var url: String?
+
+    enum CodingKeys: String, CodingKey {
+        case url    = "#text"
     }
 }

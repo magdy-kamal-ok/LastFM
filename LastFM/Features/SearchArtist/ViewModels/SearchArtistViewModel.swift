@@ -51,7 +51,7 @@ class SearchArtistViewModel {
         self.dataSourceProvider.execute()
     }
 
-    private func mapToArtistResponse(artistListResponse: [ArtistResponseModel.ArtistModel]?)-> [Artist] {
+    private func mapToArtistResponse(artistListResponse: [ArtistModel]?)-> [Artist] {
         if let artistListResponse = artistListResponse {
             return artistListResponse.map{Artist.init(name: $0.name, image: $0.images?.first?.url, numberOfListeners: $0.listeners)}
         }else {
@@ -98,12 +98,10 @@ class SearchArtistViewModel {
         if let totalArtists = artistResponse.results?.total {
             total = Int(totalArtists) ?? 0
         }
-        if isLoadingMoreSubject.value {
-            addArtistToList(artistResponse: artistResponse)
-        } else {
+        if !isLoadingMoreSubject.value {
             artistList.removeAll()
-            addArtistToList(artistResponse: artistResponse)
         }
+        addArtistToList(artistResponse: artistResponse)
     }
     
     private func handleArtistDataResponse() {

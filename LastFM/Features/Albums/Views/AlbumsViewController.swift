@@ -1,24 +1,27 @@
 //
-//  SearchArtistViewController.swift
+//  AlbumsViewController.swift
 //  LastFM
 //
-//  Created by Magdy Kamal on 1/23/20.
+//  Created by Magdy Kamal on 1/24/20.
 //  Copyright © 2020 OwnProjects. All rights reserved.
 //
 
 import UIKit
 import RxSwift
+import RxCocoa
 
-class SearchArtistViewController: BaseSearchArtistViewController {
+class AlbumsViewController: BaseAlbumsViewController {
 
-    private var searchArtistViewModel: SearchArtistViewModel!
-    private var artistList: [Artist] = []
+    private var albumsViewModel: AlbumsViewModel!
+    private var albumsList: [Album] = []
     private var disposeBag = DisposeBag()
+    private var artistName: String = ""
     
-    init(with viewModel: SearchArtistViewModel) {
-        let bundel = Bundle(for: SearchArtistViewController.self)
-        super.init(nibName: "SearchArtistViewController", bundle: bundel)
-        self.searchArtistViewModel = viewModel
+    init(with viewModel: AlbumsViewModel, artistName: String) {
+        let bundel = Bundle(for: AlbumsViewController.self)
+        super.init(nibName: "AlbumsViewController", bundle: bundel)
+        self.artistName = artistName
+        self.albumsViewModel = viewModel
     }
     
     required init?(coder: NSCoder) {
@@ -33,14 +36,22 @@ class SearchArtistViewController: BaseSearchArtistViewController {
         bindIsRefresh()
         bindIsLoadingMore()
         bindArtistList()
+        albumsViewModel.artistName = artistName
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        self.title = self.artistName
     }
     
     override func setupCellNibNames() {
-        artistsTableView.registerCellNib(cellClass: ArtistTableViewCell.self)
+        albumsTableView.registerCellNib(cellClass: AlbumTableViewCell.self)
     }
     
     override func getCellsCount(with section: Int) -> Int {
-        return artistList.count
+        return albumsList.count
     }
     
     override func getCellHeight(indexPath: IndexPath) -> CGFloat {
@@ -48,52 +59,39 @@ class SearchArtistViewController: BaseSearchArtistViewController {
     }
     
     override func getCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue() as ArtistTableViewCell
-        cell.configureCell(artist: artistList[indexPath.row])
+        let cell = tableView.dequeue() as AlbumTableViewCell
+        cell.configureCell(album: albumsList[indexPath.row])
         return cell
     }
     
     override func handlePaginationRequest() {
-        searchArtistViewModel.loadMoreArtists()
+        albumsViewModel.loadMoreAlbums()
     }
     
     override func swipeRefreshTableView() {
-        searchArtistViewModel.resetArtistList()
+        albumsViewModel.resetAlbumList()
     }
     
     override func getSectionsCount() -> Int {
         return 1
     }
-    
-    override func handleSearchWith(searchText: String?) {
-        if let searchText = searchText {
-               self.searchArtistViewModel.artistName = searchText
-           }
-    }
-    
-    override func didSelectCellAt(indexPath: IndexPath) {
-        if let artistName = artistList[indexPath.row].name {
-            let viewController = AlbumsBuilder.viewController(artistName: artistName)
-            navigationController?.pushViewController(viewController, animated: true)
-        }
-        
-    }
 }
-extension SearchArtistViewController {
+
+extension AlbumsViewController {
     
     private func bindArtistList() {
-        searchArtistViewModel
+        albumsViewModel
         .output
-        .artists
-        .asObservable().subscribe(onNext: { [weak self] (artists) in
+        .albums
+        .asObservable().subscribe(onNext: { [weak self] (albums) in
             guard let self = self else {return}
-            self.artistList = artists
-            self.artistsTableView.reloadData()
+            self.albumsList = albums
+            self.albumsTableView.reloadData()
         }).disposed(by: disposeBag)
     }
     
     private func bindIsRefresh() {
-        searchArtistViewModel
+        albumsViewModel
                .output
                .isLoadingMore
                .asObservable()
@@ -109,7 +107,7 @@ extension SearchArtistViewController {
     }
     
     private func bindIsLoadingMore() {
-        searchArtistViewModel
+        albumsViewModel
         .output
         .isLoadingMore
         .asObservable()
@@ -124,7 +122,7 @@ extension SearchArtistViewController {
     }
     
     private func bindIsLoading() {
-        searchArtistViewModel
+        albumsViewModel
         .output
         .isLoadingMore
         .map { !$0 }
