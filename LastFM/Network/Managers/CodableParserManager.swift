@@ -10,7 +10,10 @@ import Foundation
 
 struct CodableParserManager: ParserHandlerProtocol {
     
-    func parseData<T:Codable>(data: Data) -> T? {
+    init() {
+    }
+    
+    func parseData<T: Decodable>(data: Data) -> T? {
         
         do {
             let decoder = JSONDecoder()

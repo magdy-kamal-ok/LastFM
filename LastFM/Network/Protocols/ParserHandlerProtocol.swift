@@ -10,5 +10,5 @@ import Foundation
 
 public protocol ParserHandlerProtocol {
     
-    func parseData<T:Codable>(data:Data) -> T?
+    func parseData<T: Decodable>(data:Data) -> T?
 }

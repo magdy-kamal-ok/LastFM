@@ -27,10 +27,8 @@ public class RealmCachingManager: CachingManagerProtocol {
     
     public func fetch<U>(predicate: NSPredicate?, type: U.Type) -> U? {
         do {
-            if let type = type as? Object.Type
-            {
-                if let predicate = predicate
-                {
+            if let type = type as? Object.Type {
+                if let predicate = predicate {
                     let objects = self.realm.objects(type)
                     return objects.filter(predicate).first as? U
                 }else {
@@ -63,10 +61,8 @@ public class RealmCachingManager: CachingManagerProtocol {
     
     public func delete<U>(predicate: NSPredicate?, type: U.Type) -> U? {
         do {
-            if let type = type as? Object.Type
-            {
-                if let predicate = predicate
-                {
+            if let type = type as? Object.Type {
+                if let predicate = predicate {
                     let objects = self.realm.objects(type)
                     if let objectsToDelete = objects.filter(predicate).first as? U, let objectToDelete = objectsToDelete as? Object {
                         realm.delete(objectToDelete)

@@ -13,6 +13,9 @@ import Alamofire
 
 class AlamofireApiClientManager: NetworkManagerProtocol {
     
+    init() {
+    }
+    
     func fetchResponse(apiComponents: RequstHandlerProtocol) -> Observable<ResultModel>? {
         return Observable.create { [weak self] observer in
             guard let self = self else {
@@ -26,8 +29,7 @@ class AlamofireApiClientManager: NetworkManagerProtocol {
             let headers = self.getHeaders(headers: apiComponents.getRequestHeaders())
             // let responseType = apiComponents.getResponseType()
             let isReachable = NetworkReachabilityManager.init()?.isReachable == true
-            if !isReachable
-            {
+            if !isReachable {
                 let customError = ErrorModel(code:  LocalError.noInternetConnection.errorCode, message: LocalError.noInternetConnection.localizedDescription, error: nil, url: url)
                 observer.onNext(ResultModel.Faliure(customError))
                 return Disposables.create {}
@@ -53,8 +55,7 @@ class AlamofireApiClientManager: NetworkManagerProtocol {
         }
     }
     
-    private func getHeaders(headers: [String: Any]?)-> HTTPHeaders?
-    {
+    private func getHeaders(headers: [String: Any]?)-> HTTPHeaders? {
         if let headers = headers
         {
             return headers as? HTTPHeaders

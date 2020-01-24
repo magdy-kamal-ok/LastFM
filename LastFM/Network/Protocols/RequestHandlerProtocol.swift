@@ -14,4 +14,6 @@ protocol RequstHandlerProtocol {
     func getRequestHeaders()           -> [String:Any]?
     func getRequestParameters()        -> [String:Any]?
     func getRequestEncoding()          -> RequestEncoding?
+    func setRequestParameters(params: [String:Any]?)    
+    
 }
