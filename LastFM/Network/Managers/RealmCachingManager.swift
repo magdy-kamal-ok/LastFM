@@ -22,6 +22,7 @@ public class RealmCachingManager: CachingManagerProtocol {
     convenience public init() {
         let realm = (try? Realm())!
         self.init(realm: realm)
+        print(Realm.Configuration.defaultConfiguration.fileURL)
         
     }
     
@@ -65,7 +66,9 @@ public class RealmCachingManager: CachingManagerProtocol {
                 if let predicate = predicate {
                     let objects = self.realm.objects(type)
                     if let objectsToDelete = objects.filter(predicate).first as? U, let objectToDelete = objectsToDelete as? Object {
-                        realm.delete(objectToDelete)
+                        realm.beginWrite()
+                        realm.delete(objectToDelete, cascading: true)
+                        try realm.commitWrite()
                         return objectsToDelete
                     }else {
                         return nil
@@ -73,7 +76,10 @@ public class RealmCachingManager: CachingManagerProtocol {
                 }else {
                     let objects = self.realm.objects(type)
                     if let objectsToDelete = objects.first as? U, let objectToDelete = objectsToDelete as? Object {
-                        realm.delete(objectToDelete)
+                        realm.beginWrite()
+                        realm.delete(objectToDelete, cascading: true)
+
+                        try realm.commitWrite()
                         return objectsToDelete
                     }else {
                         return nil

@@ -28,7 +28,7 @@ class SearchArtistViewModel {
     private var total: Int = 0
     private var page: Int = 1
     private var disposeBag = DisposeBag()
-    private let dataSourceProvider: DataSourceProvider<ArtistResponseModel>!
+    private let dataSourceProvider: DataProvider<ArtistResponseModel>!
     public var output: Output!
     var artistName: String = "" {
         didSet {
@@ -38,7 +38,7 @@ class SearchArtistViewModel {
         }
     }
     
-    init(dataSourceProvider: DataSourceProvider<ArtistResponseModel>) {
+    init(dataSourceProvider: DataProvider<ArtistResponseModel>) {
         self.dataSourceProvider = dataSourceProvider
         output = Output(isLoadingMore: isLoadingSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), artists: artistsSubject.asObservable())
         handleArtistDataResponse()
@@ -53,7 +53,7 @@ class SearchArtistViewModel {
 
     private func mapToArtistResponse(artistListResponse: [ArtistModel]?)-> [Artist] {
         if let artistListResponse = artistListResponse {
-            return artistListResponse.map{Artist.init(name: $0.name, image: $0.images?.first?.url, numberOfListeners: $0.listeners)}
+            return artistListResponse.map{Artist.init(id: $0.id, name: $0.name, image: $0.images?.first?.url, numberOfListeners: $0.listeners)}
         }else {
             return []
         }

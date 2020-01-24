@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class DataSourceProvider <R: Decodable> {
+class DataProvider <R: Decodable> {
     
     private var requestHandler: RequstHandlerProtocol!
     private var apiClientManager: NetworkManagerProtocol!
@@ -90,7 +90,7 @@ class DataSourceProvider <R: Decodable> {
     }
 }
 
-extension DataSourceProvider: NetworkManagerProtocol {
+extension DataProvider: NetworkManagerProtocol {
     
     public func fetchResponse(apiComponents: RequstHandlerProtocol) -> Observable<ResultModel>? {
         

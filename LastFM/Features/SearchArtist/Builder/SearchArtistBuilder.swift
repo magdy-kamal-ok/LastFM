@@ -12,7 +12,7 @@ public struct SearchArtistBuilder: BuilderProtocol {
 
     public static func viewController() -> UIViewController {
         let requestHandler = RequestFactory.init(url: Constants.baseUrl)
-        let dataSourceProvider = DataSourceProvider<ArtistResponseModel>(requestHandler: requestHandler)
+        let dataSourceProvider = DataProvider<ArtistResponseModel>(requestHandler: requestHandler)
         let searchArtistViewModel = SearchArtistViewModel(dataSourceProvider: dataSourceProvider)
         let viewController = SearchArtistViewController(with: searchArtistViewModel)
         return viewController

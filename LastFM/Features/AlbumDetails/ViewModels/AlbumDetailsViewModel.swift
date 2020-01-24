@@ -1,5 +1,5 @@
 //
-//  Album.swift
+//  AlbumDetailsViewModel.swift
 //  LastFM
 //
 //  Created by Magdy Kamal on 1/24/20.
@@ -7,10 +7,3 @@
 //
 
 import Foundation
-
-struct Album {
-    var id: String!
-    var name: String?
-    var image: String?
-    var numberOfPlays: Int?
-}

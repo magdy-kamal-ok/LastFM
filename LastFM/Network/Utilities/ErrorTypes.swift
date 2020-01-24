@@ -16,6 +16,8 @@ enum LocalError: Error {
     case noCached
     case noUpdates
     case cachingFailed
+    case removeFromCacheFailed
+    case unknownError
     var localizedDescription: String {
         switch self {
         case .noInternetConnection: return "Internet Connection Error"
@@ -26,16 +28,30 @@ enum LocalError: Error {
             return "Could Not Update Local Data"
         case .cachingFailed:
             return "Could Not Cache To Local Data"
+        case .removeFromCacheFailed:
+            return "Could Not Remove From Local Data From Cache"
+        case .unknownError:
+            return "unknown Error Please Try Again after 1 minute"
         }
     }
     var errorCode:Int {
         switch self {
-        case .noInternetConnection: return LocalErrorCode.noInternetConnection.rawValue
-        case .timeOut: return LocalErrorCode.timeOut.rawValue
-        case .parsingFailure: return LocalErrorCode.parsingFailure.rawValue
-        case .noCached: return LocalErrorCode.noCached.rawValue
-        case .noUpdates: return LocalErrorCode.noUpdates.rawValue
-        case .cachingFailed: return LocalErrorCode.cachingFailed.rawValue
+        case .noInternetConnection:
+            return LocalErrorCode.noInternetConnection.rawValue
+        case .timeOut:
+            return LocalErrorCode.timeOut.rawValue
+        case .parsingFailure:
+            return LocalErrorCode.parsingFailure.rawValue
+        case .noCached:
+            return LocalErrorCode.noCached.rawValue
+        case .noUpdates:
+            return LocalErrorCode.noUpdates.rawValue
+        case .cachingFailed:
+            return LocalErrorCode.cachingFailed.rawValue
+        case .removeFromCacheFailed:
+            return LocalErrorCode.removeFromCacheFailed.rawValue
+        case .unknownError:
+            return LocalErrorCode.unknownError.rawValue
         }
     }
 }
@@ -48,5 +64,7 @@ enum LocalErrorCode: Int {
     case noCached = 5003
     case noUpdates = 5004
     case cachingFailed = 5005
+    case removeFromCacheFailed = 5006
+    case unknownError = 5007
     
 }

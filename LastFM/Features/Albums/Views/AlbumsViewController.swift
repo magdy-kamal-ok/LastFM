@@ -15,12 +15,12 @@ class AlbumsViewController: BaseAlbumsViewController {
     private var albumsViewModel: AlbumsViewModel!
     private var albumsList: [Album] = []
     private var disposeBag = DisposeBag()
-    private var artistName: String = ""
-    
-    init(with viewModel: AlbumsViewModel, artistName: String) {
+    private var artist: Artist
+    var albumRepo: AlbumsDetialsRepository!
+    init(with viewModel: AlbumsViewModel, artist: Artist) {
+        self.artist = artist
         let bundel = Bundle(for: AlbumsViewController.self)
         super.init(nibName: "AlbumsViewController", bundle: bundel)
-        self.artistName = artistName
         self.albumsViewModel = viewModel
     }
     
@@ -36,14 +36,14 @@ class AlbumsViewController: BaseAlbumsViewController {
         bindIsRefresh()
         bindIsLoadingMore()
         bindArtistList()
-        albumsViewModel.artistName = artistName
+        albumsViewModel.artistName = artist.name ?? ""
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
-        self.title = self.artistName
+        self.title = artist.name
     }
     
     override func setupCellNibNames() {
@@ -62,6 +62,11 @@ class AlbumsViewController: BaseAlbumsViewController {
         let cell = tableView.dequeue() as AlbumTableViewCell
         cell.configureCell(album: albumsList[indexPath.row])
         return cell
+    }
+    
+    override func didSelectCellAt(indexPath: IndexPath) {
+        let album = albumsList[indexPath.row]
+        albumRepo = AlbumsDetialsRepository(dataSourceProvider: DataProvider<AlbumDetailsResponseModel>(requestHandler: RequestFactory.init(url: Constants.baseUrl)), cachingManager: RealmCachingManager(), artist: artist, album: album)
     }
     
     override func handlePaginationRequest() {

@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Artist {
+public struct Artist {
+    var id: String!
     var name: String?
     var image: String?
     var numberOfListeners: String?
