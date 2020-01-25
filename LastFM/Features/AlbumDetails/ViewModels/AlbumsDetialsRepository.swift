@@ -28,22 +28,20 @@ class AlbumsDetialsRepository  {
     private var disposeBag = DisposeBag()
     private var artist: Artist
     private var album: Album
+    private var isAutomaticalyCaching: Bool
     public var output: Output!
     
-    deinit {
-        print("Killed")
-    }
-    init(dataSourceProvider: DataProvider<AlbumDetailsResponseModel>, cachingManager: CachingManagerProtocol, artist: Artist, album: Album) {
+    init(dataSourceProvider: DataProvider<AlbumDetailsResponseModel>, cachingManager: CachingManagerProtocol, artist: Artist, album: Album, isAutomaticalyCaching: Bool = false) {
         self.dataSourceProvider = dataSourceProvider
         self.cachingManager = cachingManager
         self.album = album
         self.artist = artist
+        self.isAutomaticalyCaching = isAutomaticalyCaching
         output = Output(albumDetails: albumDetailsSubject.asObservable(), isSaved: isSavedSubject.asObservable(), isDeleted: isDeletedSubject.asObservable(), error: errorSubject.asObservable())
         handleAlbumDataResponse()
-        fetchAlbumDetails()
     }
     
-    private func fetchAlbumDetails() {
+    func fetchAlbumDetails() {
         let albumDetailsParameters = AlbumDetailsParameters(artistName: artist.name!, album: album.name!)
         self.dataSourceProvider.setApiParameters(params: albumDetailsParameters.dictionary)
         self.dataSourceProvider.execute()
@@ -87,7 +85,7 @@ class AlbumsDetialsRepository  {
     func deleteAlbumFromCache() {
         let predicate = NSPredicate.init(format: "artistId=%@ And albumId=%@", self.artist.id, self.album.id)
         if let _ =  cachingManager.delete(predicate: predicate, type: LocalAlbumDetailsModel.self) {
-            
+                isDeletedSubject.accept(true)
             }else {
                 failedDeleteFromCache()
             }
@@ -95,6 +93,9 @@ class AlbumsDetialsRepository  {
     
     private func handleAlbumDetailsResponse(albumDetailsDesponse: AlbumDetailsResponseModel) {
         albumDetailsSubject.accept(albumDetailsDesponse)
+        if isAutomaticalyCaching {
+            saveAlbumToCache()
+        }
     }
     
     private func handleAlbumDataResponse() {

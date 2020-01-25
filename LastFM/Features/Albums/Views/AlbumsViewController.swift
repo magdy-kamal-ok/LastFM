@@ -35,7 +35,7 @@ class AlbumsViewController: BaseAlbumsViewController {
         bindIsLoading()
         bindIsRefresh()
         bindIsLoadingMore()
-        bindArtistList()
+        bindAlbumList()
         albumsViewModel.artistName = artist.name ?? ""
 
     }
@@ -65,8 +65,10 @@ class AlbumsViewController: BaseAlbumsViewController {
     }
     
     override func didSelectCellAt(indexPath: IndexPath) {
-        let album = albumsList[indexPath.row]
-        albumRepo = AlbumsDetialsRepository(dataSourceProvider: DataProvider<AlbumDetailsResponseModel>(requestHandler: RequestFactory.init(url: Constants.baseUrl)), cachingManager: RealmCachingManager(), artist: artist, album: album)
+        if let _ = albumsList[indexPath.row].name {
+            let viewController = AlbumsDetailsBuilder.viewController(artist: artist, album: albumsList[indexPath.row])
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
     override func handlePaginationRequest() {
@@ -84,7 +86,7 @@ class AlbumsViewController: BaseAlbumsViewController {
 
 extension AlbumsViewController {
     
-    private func bindArtistList() {
+    private func bindAlbumList() {
         albumsViewModel
         .output
         .albums
@@ -129,7 +131,7 @@ extension AlbumsViewController {
     private func bindIsLoading() {
         albumsViewModel
         .output
-        .isLoadingMore
+        .isLoading
         .map { !$0 }
         .bind(to: self.loadingIndicator.rx.isHidden)
         .disposed(by: self.disposeBag)

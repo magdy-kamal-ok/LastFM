@@ -126,7 +126,7 @@ extension SearchArtistViewController {
     private func bindIsLoading() {
         searchArtistViewModel
         .output
-        .isLoadingMore
+        .isLoading
         .map { !$0 }
         .bind(to: self.loadingIndicator.rx.isHidden)
         .disposed(by: self.disposeBag)
