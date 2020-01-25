@@ -40,7 +40,7 @@ class SearchArtistViewModel {
     
     init(dataSourceProvider: DataProvider<ArtistResponseModel>) {
         self.dataSourceProvider = dataSourceProvider
-        output = Output(isLoadingMore: isLoadingSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), artists: artistsSubject.asObservable())
+        output = Output(isLoadingMore: isLoadingMoreSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), artists: artistsSubject.asObservable())
         handleArtistDataResponse()
     }
     
@@ -53,7 +53,7 @@ class SearchArtistViewModel {
 
     private func mapToArtistResponse(artistListResponse: [ArtistModel]?)-> [Artist] {
         if let artistListResponse = artistListResponse {
-            return artistListResponse.map{Artist.init(id: $0.id, name: $0.name, image: $0.images?.first?.url, numberOfListeners: $0.listeners)}
+            return artistListResponse.map{Artist.init(id: $0.id ?? $0.name, name: $0.name, image: $0.images?.first?.url, numberOfListeners: $0.listeners)}
         }else {
             return []
         }

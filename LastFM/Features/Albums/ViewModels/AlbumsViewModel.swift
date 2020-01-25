@@ -27,8 +27,10 @@ class AlbumsViewModel {
     private var albumList: [Album] = []
     private var total: Int = 0
     private var page: Int = 1
+    private var artist: Artist
     private var disposeBag = DisposeBag()
     private let dataSourceProvider: DataProvider<AlbumsResponseModel>!
+    private let albumDetailsRrepository: AlbumsDetialsRepository
     public var output: Output!
     var artistName: String = "" {
         didSet {
@@ -38,13 +40,15 @@ class AlbumsViewModel {
         }
     }
     
-    init(dataSourceProvider: DataProvider<AlbumsResponseModel>) {
+    init(dataSourceProvider: DataProvider<AlbumsResponseModel>, artist: Artist, albumDetailsRrepository: AlbumsDetialsRepository) {
         self.dataSourceProvider = dataSourceProvider
-        output = Output(isLoadingMore: isLoadingSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), albums: albumsSubject.asObservable())
+        self.artist = artist
+        self.albumDetailsRrepository = albumDetailsRrepository
+        output = Output(isLoadingMore: isLoadingMoreSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), albums: albumsSubject.asObservable())
         handleAlbumDataResponse()
     }
     
-
+    
     private func fetchAlbums() {
         let albumsParameters = AlbumsParameters.init(artistName: artistName, page: page)
         self.dataSourceProvider.setApiParameters(params: albumsParameters.dictionary)
@@ -53,7 +57,7 @@ class AlbumsViewModel {
 
     private func mapToAlbumResponse(albumListResponse: [AlbumModel]?)-> [Album] {
         if let albumListResponse = albumListResponse {
-            return albumListResponse.map{Album.init(id: $0.id, name: $0.name, image: $0.images?.first?.url, numberOfPlays: $0.playcount)}
+            return albumListResponse.map{Album.init(id: $0.id ?? $0.name, name: $0.name, image: $0.images?.first?.url, numberOfPlays: $0.playcount)}
         }else {
             return []
         }

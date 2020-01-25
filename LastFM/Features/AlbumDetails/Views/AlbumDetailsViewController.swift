@@ -41,7 +41,6 @@ class AlbumDetailsViewController: UIViewController {
         setupCollectionView()
         bindIsLoading()
         bindTrackList()
-        bindDeleteButtonImage()
         bindDownloadButtonImage()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -55,11 +54,7 @@ class AlbumDetailsViewController: UIViewController {
     }
 
     @IBAction func didPressDownloadButton(_ sender: UIButton) {
-        if downloadButton.tag == 0 {
-            albumDetailsViewModel.saveAlbumDetails()
-        }else {
-            albumDetailsViewModel.deleteAlbumDetails()
-        }
+        albumDetailsViewModel.handleDownloadButtonAction()
     }
 
 }
@@ -104,35 +99,16 @@ extension AlbumDetailsViewController: UICollectionViewDelegate, UICollectionView
 }
 
 extension AlbumDetailsViewController {
-    
-    private func bindDeleteButtonImage() {
-        albumDetailsViewModel
-        .output
-        .isDeleted
-        .asObservable().subscribe(onNext: { [weak self] (isDeleted) in
-            guard let self = self else {return}
-            if isDeleted {
-                self.downloadButton.setImage(UIImage(named: "ic-download"), for: .normal)
-                self.downloadButton.tag = 0
-            }else {
-                self.downloadButton.setImage(UIImage(named: "ic-delete"), for: .normal)
-                self.downloadButton.tag = 1
-            }
-        }).disposed(by: disposeBag)
-    }
-    
     private func bindDownloadButtonImage() {
         albumDetailsViewModel
         .output
-        .isSaved
-        .asObservable().subscribe(onNext: { [weak self] (isSaved) in
+        .isCached
+        .asObservable().subscribe(onNext: { [weak self] (isCached) in
             guard let self = self else {return}
-            if isSaved {
+            if isCached {
                 self.downloadButton.setImage(UIImage(named: "ic-delete"), for: .normal)
-                self.downloadButton.tag = 1
             }else {
                 self.downloadButton.setImage(UIImage(named: "ic-download"), for: .normal)
-                self.downloadButton.tag = 0
             }
         }).disposed(by: disposeBag)
     }

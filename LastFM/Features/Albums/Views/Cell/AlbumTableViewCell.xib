@@ -22,22 +22,51 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AUy-KQ-IK0">
                                 <rect key="frame" x="8" y="8" width="128" height="174"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="31F-F3-SO0"/>
+                                    <constraint firstAttribute="height" constant="174" id="Wu8-Ba-wdx"/>
+                                </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zCD-Ay-MNH">
                                 <rect key="frame" x="144" y="8" width="168" height="174"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="asdas dsa da das dsa d asd sad as d asd sa dsad " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuT-xA-Hw1">
-                                        <rect key="frame" x="0.0" y="0.0" width="168" height="117"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="168" height="61"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="as das dsa d sdsa das d sad" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZp-3Q-u4j">
-                                        <rect key="frame" x="0.0" y="133" width="168" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVZ-fA-LVI">
+                                        <rect key="frame" x="0.0" y="77" width="168" height="97"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="as das dsa d sdsa das d sad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZp-3Q-u4j">
+                                                <rect key="frame" x="8" y="0.0" width="152" height="49"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTq-15-iFQ">
+                                                <rect key="frame" x="128" y="57" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="F5O-Xs-6vd"/>
+                                                    <constraint firstAttribute="height" constant="32" id="Mth-Fm-AH1"/>
+                                                </constraints>
+                                                <state key="normal" image="ic-download"/>
+                                                <connections>
+                                                    <action selector="didPressDownloadButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OVf-nf-kjR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="TZp-3Q-u4j" secondAttribute="trailing" constant="8" id="aGk-7K-MsT"/>
+                                            <constraint firstAttribute="trailing" secondItem="YTq-15-iFQ" secondAttribute="trailing" constant="8" id="b95-Df-1CX"/>
+                                            <constraint firstAttribute="bottom" secondItem="YTq-15-iFQ" secondAttribute="bottom" constant="8" id="dvq-op-p3s"/>
+                                            <constraint firstItem="TZp-3Q-u4j" firstAttribute="top" secondItem="dVZ-fA-LVI" secondAttribute="top" id="f4Z-Rt-XEu"/>
+                                            <constraint firstItem="TZp-3Q-u4j" firstAttribute="leading" secondItem="dVZ-fA-LVI" secondAttribute="leading" constant="8" id="naV-9L-cGU"/>
+                                            <constraint firstItem="YTq-15-iFQ" firstAttribute="top" secondItem="TZp-3Q-u4j" secondAttribute="bottom" constant="8" id="pUX-gC-klj"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -46,7 +75,6 @@
                             <constraint firstItem="AUy-KQ-IK0" firstAttribute="top" secondItem="lGV-Bg-5MF" secondAttribute="top" constant="8" id="DSs-7d-XlE"/>
                             <constraint firstAttribute="bottom" secondItem="AUy-KQ-IK0" secondAttribute="bottom" constant="8" id="Mzc-iW-grp"/>
                             <constraint firstItem="zCD-Ay-MNH" firstAttribute="centerY" secondItem="AUy-KQ-IK0" secondAttribute="centerY" id="ZJb-5k-LDM"/>
-                            <constraint firstItem="AUy-KQ-IK0" firstAttribute="width" secondItem="lGV-Bg-5MF" secondAttribute="width" multiplier="0.4" id="crQ-ef-d18"/>
                             <constraint firstItem="AUy-KQ-IK0" firstAttribute="leading" secondItem="lGV-Bg-5MF" secondAttribute="leading" constant="8" id="dBz-e2-WrF"/>
                             <constraint firstAttribute="trailing" secondItem="zCD-Ay-MNH" secondAttribute="trailing" constant="8" id="msE-wi-oeQ"/>
                             <constraint firstItem="zCD-Ay-MNH" firstAttribute="leading" secondItem="AUy-KQ-IK0" secondAttribute="trailing" constant="8" id="ozf-Y6-Cik"/>
@@ -67,8 +95,12 @@
                 <outlet property="albumImageView" destination="AUy-KQ-IK0" id="2iC-Ng-d7t"/>
                 <outlet property="albumNameLabel" destination="OuT-xA-Hw1" id="E1k-v3-fHB"/>
                 <outlet property="albumPlaysCountLabel" destination="TZp-3Q-u4j" id="sbG-wg-trB"/>
+                <outlet property="downloadButton" destination="YTq-15-iFQ" id="z7V-18-QmB"/>
             </connections>
-            <point key="canvasLocation" x="49" y="96"/>
+            <point key="canvasLocation" x="47.826086956521742" y="95.758928571428569"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ic-download" width="32" height="32"/>
+    </resources>
 </document>

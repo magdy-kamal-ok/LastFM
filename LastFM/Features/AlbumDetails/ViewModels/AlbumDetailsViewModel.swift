@@ -16,8 +16,7 @@ class AlbumDetailsViewModel {
             let isLoading: Observable<Bool>
             let tracks: Observable<[TrackModel]>
             let error: Observable<ErrorModel>
-            let isSaved: Observable<Bool>
-            let isDeleted: Observable<Bool>
+            let isCached: Observable<Bool>
         }
     
 
@@ -26,6 +25,7 @@ class AlbumDetailsViewModel {
     private var errorSubject: PublishSubject<ErrorModel> = PublishSubject<ErrorModel>()
     
     private var disposeBag = DisposeBag()
+    private var isCached = false
     private var artist: Artist
     private var album: Album
     private let dataSourceProvider: DataProvider<AlbumDetailsResponseModel>!
@@ -37,22 +37,29 @@ class AlbumDetailsViewModel {
         self.artist = artist
         self.album = album
         self.albumDetailsRrepository = AlbumsDetialsRepository(dataSourceProvider: dataSourceProvider, cachingManager: RealmCachingManager(), artist: artist, album: album)
-        output = Output(isLoading: isLoadingSubject.asObservable(), tracks: tracksSubject.asObservable(), error: errorSubject.asObservable(), isSaved: albumDetailsRrepository.output.isSaved, isDeleted: albumDetailsRrepository.output.isDeleted)
-  
+        output = Output(isLoading: isLoadingSubject.asObservable(), tracks: tracksSubject.asObservable(), error: errorSubject.asObservable(), isCached: albumDetailsRrepository.output.isCached)
+        bindIsCachedVariable()
         handleAlbumDetailsDataResponse()
         fetchAlbumDetials()
 
         
     }
     
-    public func saveAlbumDetails() {
+    private func saveAlbumDetails() {
         albumDetailsRrepository.saveAlbumToCache()
     }
 
-    public func deleteAlbumDetails() {
+    private func deleteAlbumDetails() {
         albumDetailsRrepository.deleteAlbumFromCache()
     }
     
+    public func handleDownloadButtonAction() {
+        if isCached {
+            self.deleteAlbumDetails()
+        }else {
+            self.saveAlbumDetails()
+        }
+    }
     private func fetchAlbumDetials() {
         albumDetailsRrepository.fetchAlbumDetails()
     }
@@ -63,6 +70,14 @@ class AlbumDetailsViewModel {
         
     }
     
+    private func bindIsCachedVariable() {
+        output
+        .isCached
+        .asObservable().subscribe(onNext: { [weak self] (isCached) in
+                guard let self = self else {return}
+                self.isCached = isCached
+            }).disposed(by: disposeBag)
+    }
     
     private func handleAlbumDetailsDataResponse() {
         albumDetailsRrepository

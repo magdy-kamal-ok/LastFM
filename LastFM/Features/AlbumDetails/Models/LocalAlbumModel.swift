@@ -91,13 +91,6 @@ class LocalArtistModel: Object {
         self.image = image
         self.numberOfListners = numberOfListners
     }
-    
-
-    
-    
-    override class func primaryKey() -> String? {
-        return "artistId";
-    }
 }
 
 class LocalTrackModel: Object {

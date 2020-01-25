@@ -37,7 +37,6 @@ class AlbumsViewController: BaseAlbumsViewController {
         bindIsLoadingMore()
         bindAlbumList()
         albumsViewModel.artistName = artist.name ?? ""
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +59,8 @@ class AlbumsViewController: BaseAlbumsViewController {
     
     override func getCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue() as AlbumTableViewCell
-        cell.configureCell(album: albumsList[indexPath.row])
+        let album = albumsList[indexPath.row]
+        cell.configureCell(artist: artist, album: album)
         return cell
     }
     
@@ -85,7 +85,7 @@ class AlbumsViewController: BaseAlbumsViewController {
 }
 
 extension AlbumsViewController {
-    
+
     private func bindAlbumList() {
         albumsViewModel
         .output
