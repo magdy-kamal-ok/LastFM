@@ -44,6 +44,11 @@ class AlbumsViewController: BaseAlbumsViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = artist.name
+        setNavigationBarButton()
+    }
+    
+    private func setNavigationBarButton() {
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     override func setupCellNibNames() {

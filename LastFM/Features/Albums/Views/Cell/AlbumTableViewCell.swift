@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AlamofireImage
 import RxSwift
 import RxCocoa
 
@@ -42,9 +41,7 @@ class AlbumTableViewCell: UITableViewCell {
         if let playsCount = album.numberOfPlays {
             albumPlaysCountLabel.text = String(playsCount)
         }
-        if let imageUrl = album.image, let url = URL(string: imageUrl)  {
-            self.albumImageView.af_setImage(withURL: url)
-        }
+        self.albumImageView.downloadImageFromUrlString(url: album.image)
         let requestHandler = RequestFactory.init(url: Constants.baseUrl)
         let dataSourceProvider = DataProvider<AlbumDetailsResponseModel>(requestHandler: requestHandler)
         albumDetailsViewModel = AlbumDetailsViewModel(dataSourceProvider: dataSourceProvider, artist: artist, album: album, coordinator: nil)

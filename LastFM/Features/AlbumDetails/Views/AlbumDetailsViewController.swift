@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import AlamofireImage
 
 class AlbumDetailsViewController: UIViewController {
 
@@ -47,6 +46,11 @@ class AlbumDetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         setupViewData()
         albumDetailsViewModel.fetchAlbumDetials()
+        setNavigationBarButton()
+    }
+
+    private func setNavigationBarButton() {
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -70,12 +74,8 @@ extension AlbumDetailsViewController {
         title = album.name
         artistNameLabel.text = artist.name
         artistListenserLabel.text = artist.numberOfListeners
-        if let imageUrl = album.image, let url = URL(string: imageUrl)  {
-            self.albumImageView.af_setImage(withURL: url)
-        }
-        if let imageUrl = artist.image, let url = URL(string: imageUrl)  {
-            self.artistImageView.af_setImage(withURL: url)
-        }
+        self.albumImageView.downloadImageFromUrlString(url: album.image)
+        self.artistImageView.downloadImageFromUrlString(url: artist.image, placeHolder: "ic-empty-artist")
     }
     
     private func showErrorAlert(error: ErrorModel) {

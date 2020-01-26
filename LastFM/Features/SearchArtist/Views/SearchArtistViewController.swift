@@ -34,6 +34,17 @@ class SearchArtistViewController: BaseSearchArtistViewController {
         bindIsLoadingMore()
         bindArtistList()
         bindArtistError()
+        bindSearchBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = "Search Artists"
+        setNavigationBarButton()
+    }
+    
+    private func setNavigationBarButton() {
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     override func setupCellNibNames() {
@@ -64,12 +75,6 @@ class SearchArtistViewController: BaseSearchArtistViewController {
     
     override func getSectionsCount() -> Int {
         return 1
-    }
-    
-    override func handleSearchWith(searchText: String?) {
-        if let searchText = searchText {
-               self.searchArtistViewModel.artistName = searchText
-           }
     }
     
     override func didSelectCellAt(indexPath: IndexPath) {
@@ -152,4 +157,15 @@ extension SearchArtistViewController {
         .disposed(by: self.disposeBag)
     }
     
+    private func bindSearchBar() {
+        artistSearchBar
+            .rx
+            .text
+            .orEmpty
+            .throttle(.milliseconds(500), scheduler: MainScheduler.asyncInstance)
+            .distinctUntilChanged()
+            .bind { (searchText) in
+                self.searchArtistViewModel.artistName = searchText
+        }.disposed(by: disposeBag)
+    }
 }

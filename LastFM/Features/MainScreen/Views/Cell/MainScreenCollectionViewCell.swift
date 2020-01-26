@@ -26,11 +26,7 @@ class MainScreenCollectionViewCell: UICollectionViewCell {
         artistNameLabel.text = albumDetailsModel.artist.name
         artistListenserLabel.text = albumDetailsModel.artist.numberOfListeners
         albumNameLabel.text = albumDetailsModel.album.name
-        if let imageUrl = albumDetailsModel.album.image, let url = URL(string: imageUrl)  {
-            self.albumImageView.af_setImage(withURL: url)
-        }
-        if let imageUrl = albumDetailsModel.artist.image, let url = URL(string: imageUrl)  {
-            self.artistImageView.af_setImage(withURL: url)
-        }
+        self.albumImageView.downloadImageFromUrlString(url: albumDetailsModel.album.image)
+        self.artistImageView.downloadImageFromUrlString(url: albumDetailsModel.artist.image, placeHolder: "ic-empty-artist")
     }
 }

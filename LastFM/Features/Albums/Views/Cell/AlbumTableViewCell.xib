@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,19 +31,19 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zCD-Ay-MNH">
                                 <rect key="frame" x="144" y="8" width="168" height="174"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="asdas dsa da das dsa d asd sad as d asd sa dsad " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuT-xA-Hw1">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuT-xA-Hw1">
                                         <rect key="frame" x="0.0" y="0.0" width="168" height="61"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="primaryColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVZ-fA-LVI">
                                         <rect key="frame" x="0.0" y="77" width="168" height="97"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="as das dsa d sdsa das d sad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZp-3Q-u4j">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZp-3Q-u4j">
                                                 <rect key="frame" x="8" y="0.0" width="152" height="49"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="secondaryColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTq-15-iFQ">
@@ -51,13 +52,14 @@
                                                     <constraint firstAttribute="width" constant="32" id="F5O-Xs-6vd"/>
                                                     <constraint firstAttribute="height" constant="32" id="Mth-Fm-AH1"/>
                                                 </constraints>
+                                                <color key="tintColor" name="primaryColor"/>
                                                 <state key="normal" image="ic-download"/>
                                                 <connections>
                                                     <action selector="didPressDownloadButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OVf-nf-kjR"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="TZp-3Q-u4j" secondAttribute="trailing" constant="8" id="aGk-7K-MsT"/>
                                             <constraint firstAttribute="trailing" secondItem="YTq-15-iFQ" secondAttribute="trailing" constant="8" id="b95-Df-1CX"/>
@@ -70,7 +72,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
                             <constraint firstItem="AUy-KQ-IK0" firstAttribute="top" secondItem="lGV-Bg-5MF" secondAttribute="top" constant="8" id="DSs-7d-XlE"/>
                             <constraint firstAttribute="bottom" secondItem="AUy-KQ-IK0" secondAttribute="bottom" constant="8" id="Mzc-iW-grp"/>
@@ -84,7 +86,7 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="lGV-Bg-5MF" secondAttribute="bottom" id="ED3-3C-mSp"/>
+                    <constraint firstAttribute="bottom" secondItem="lGV-Bg-5MF" secondAttribute="bottom" constant="8" id="ED3-3C-mSp"/>
                     <constraint firstItem="lGV-Bg-5MF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Q91-jv-zbd"/>
                     <constraint firstAttribute="trailing" secondItem="lGV-Bg-5MF" secondAttribute="trailing" id="XkD-gP-sUv"/>
                     <constraint firstItem="lGV-Bg-5MF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="h8I-fP-HcY"/>
@@ -102,5 +104,14 @@
     </objects>
     <resources>
         <image name="ic-download" width="32" height="32"/>
+        <namedColor name="backgroundColor">
+            <color red="0.36862745098039218" green="0.31372549019607843" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryColor">
+            <color red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondaryColor">
+            <color red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

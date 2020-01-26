@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -49,16 +50,16 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="FG9-2a-e5U">
                             <rect key="frame" x="66" y="8" width="206" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" dsad " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zN6-0L-vkN">
-                                    <rect key="frame" x="0.0" y="0.0" width="206" height="20.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zN6-0L-vkN">
+                                    <rect key="frame" x="0.0" y="0.0" width="206" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="primaryColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text=" dsa das d sad" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9T-uC-rar">
-                                    <rect key="frame" x="0.0" y="36.5" width="206" height="13.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9T-uC-rar">
+                                    <rect key="frame" x="0.0" y="50" width="206" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="secondaryColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -75,7 +76,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" name="backgroundColor"/>
                     <constraints>
                         <constraint firstItem="FG9-2a-e5U" firstAttribute="leading" secondItem="FaF-A5-G7f" secondAttribute="trailing" constant="8" id="2Gz-xh-nOf"/>
                         <constraint firstItem="FaF-A5-G7f" firstAttribute="leading" secondItem="Zyj-MZ-BuN" secondAttribute="leading" constant="8" id="9o8-K8-niY"/>
@@ -89,7 +90,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tpd-ae-Qdx">
-                    <rect key="frame" x="8" y="282" width="304" height="128"/>
+                    <rect key="frame" x="8" y="290" width="304" height="128"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="128" id="kd6-Cw-hbm"/>
@@ -114,7 +115,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tpd-ae-Qdx" secondAttribute="trailing" constant="8" id="XzU-Vg-hrP"/>
                 <constraint firstItem="Zyj-MZ-BuN" firstAttribute="top" secondItem="JA5-3Y-PGJ" secondAttribute="bottom" constant="8" id="YDE-8t-alX"/>
                 <constraint firstItem="Zyj-MZ-BuN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="bnz-Rn-Olh"/>
-                <constraint firstItem="tpd-ae-Qdx" firstAttribute="top" secondItem="Zyj-MZ-BuN" secondAttribute="bottom" constant="8" id="ckG-Iz-HBC"/>
+                <constraint firstItem="tpd-ae-Qdx" firstAttribute="top" secondItem="Zyj-MZ-BuN" secondAttribute="bottom" constant="16" id="ckG-Iz-HBC"/>
                 <constraint firstItem="vei-fs-6zQ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="g0t-4b-I4q"/>
                 <constraint firstItem="vei-fs-6zQ" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="jQa-tm-agA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zyj-MZ-BuN" secondAttribute="trailing" constant="8" id="jYI-oL-nhp"/>
@@ -125,5 +126,14 @@
     </objects>
     <resources>
         <image name="ic-download" width="32" height="32"/>
+        <namedColor name="backgroundColor">
+            <color red="0.36862745098039218" green="0.31372549019607843" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryColor">
+            <color red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondaryColor">
+            <color red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

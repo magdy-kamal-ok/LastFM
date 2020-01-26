@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AlamofireImage
 
 class ArtistTableViewCell: UITableViewCell {
     
@@ -29,8 +28,6 @@ class ArtistTableViewCell: UITableViewCell {
     func configureCell(artist: Artist) {
         artistNameLabel.text = artist.name
         artistListenserLabel.text = artist.numberOfListeners
-        if let imageUrl = artist.image, let url = URL(string: imageUrl)  {
-            self.artistImageView.af_setImage(withURL: url)
-        }
+        self.artistImageView.downloadImageFromUrlString(url: artist.image, placeHolder: "ic-empty-artist")
     }
 }

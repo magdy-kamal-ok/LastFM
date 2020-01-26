@@ -28,17 +28,10 @@ class BaseSearchArtistViewController: UIViewController {
         super.viewDidLoad()
         setupTableDataSource()
         setupCellNibNames()
-        setupSearchBar()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
-    // MARK: - Search Bar
-
-    func setupSearchBar() -> Void {
-        artistSearchBar.delegate = self
     }
     
     // MARK: - Table view
@@ -130,16 +123,6 @@ class BaseSearchArtistViewController: UIViewController {
         }
     }
 
-}
-
-// MARK: - SearchBarDelegate
-extension BaseSearchArtistViewController: UISearchBarDelegate {
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.artistSearchBar.becomeFirstResponder()
-        self.artistSearchBar.endEditing(true)
-        handleSearchWith(searchText: searchBar.text)
-    }
 }
 
 // MARK: - UITableViewDataSource
