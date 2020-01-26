@@ -67,8 +67,7 @@ class AlbumsViewController: BaseAlbumsViewController {
     
     override func didSelectCellAt(indexPath: IndexPath) {
         if let _ = albumsList[indexPath.row].name {
-            let viewController = AlbumsDetailsBuilder.viewController(artist: artist, album: albumsList[indexPath.row])
-            navigationController?.pushViewController(viewController, animated: true)
+            albumsViewModel.didPressAlbum(album: albumsList[indexPath.row])
         }
     }
     

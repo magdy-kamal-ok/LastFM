@@ -25,7 +25,8 @@ class SearchArtistViewModel {
     private var isLoadingSubject: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     private var artistsSubject: PublishSubject<[Artist]> = PublishSubject<[Artist]>()
     private var errorSubject: PublishSubject = PublishSubject<ErrorModel>()
-    
+    private weak var coordinator: SearchArtistCoordinator?
+
     private var artistList: [Artist] = []
     private var total: Int = 0
     private var page: Int = 1
@@ -40,12 +41,34 @@ class SearchArtistViewModel {
         }
     }
     
-    init(dataSourceProvider: DataProvider<ArtistResponseModel>) {
+    init(dataSourceProvider: DataProvider<ArtistResponseModel>, coordinator: Coordinator?) {
         self.dataSourceProvider = dataSourceProvider
         output = Output(isLoadingMore: isLoadingMoreSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), artists: artistsSubject.asObservable(), error: errorSubject.asObservable())
         handleArtistDataResponse()
+        self.coordinator = coordinator as? SearchArtistCoordinator
     }
     
+    public func loadMoreArtists() {
+        if !isLoadingMoreSubject.value && artistList.count < total {
+            page = page + 1
+            isLoadingMoreSubject.accept(true)
+            fetchArtists()
+        }
+    }
+    public func resetArtistList() {
+        if !artistName.isEmpty {
+            page = 1
+            artistList.removeAll()
+            isRefreshSubject.accept(true)
+            fetchArtists()
+        }else {
+            isRefreshSubject.accept(false)
+        }
+    }
+    
+    public func didSelectArtist(artist: Artist) {
+        coordinator?.showAlbumsList(with: artist)
+    }
 
     private func fetchArtists() {
         let searchArtistParameters = SearchArtistParameters.init(artistName: artistName, page: page)
@@ -77,23 +100,7 @@ class SearchArtistViewModel {
         }
     }
     
-    public func loadMoreArtists() {
-        if !isLoadingMoreSubject.value && artistList.count < total {
-            page = page + 1
-            isLoadingMoreSubject.accept(true)
-            fetchArtists()
-        }
-    }
-    public func resetArtistList() {
-        if !artistName.isEmpty {
-            page = 1
-            artistList.removeAll()
-            isRefreshSubject.accept(true)
-            fetchArtists()
-        }else {
-            isRefreshSubject.accept(false)
-        }
-    }
+
     
     private func addArtistToList(artistResponse: ArtistResponseModel) {
         let mappedArtists = mapToArtistResponse(artistListResponse: artistResponse.results?.artistMatches?.artist)

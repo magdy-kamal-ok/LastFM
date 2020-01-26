@@ -47,7 +47,7 @@ class AlbumTableViewCell: UITableViewCell {
         }
         let requestHandler = RequestFactory.init(url: Constants.baseUrl)
         let dataSourceProvider = DataProvider<AlbumDetailsResponseModel>(requestHandler: requestHandler)
-        albumDetailsViewModel = AlbumDetailsViewModel(dataSourceProvider: dataSourceProvider, artist: artist, album: album)
+        albumDetailsViewModel = AlbumDetailsViewModel(dataSourceProvider: dataSourceProvider, artist: artist, album: album, coordinator: nil)
         albumDetailsViewModel?.checkifAlbumExists()
         bindDownloadButtonImage()
     }

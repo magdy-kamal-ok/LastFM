@@ -10,8 +10,8 @@ import UIKit
 
 public struct MainScreenBuilder {
 
-    public static func viewController() -> UIViewController {
-        let mainScreenViewModel = MainScreenViewModel()
+    public static func viewController(coordinator: Coordinator) -> UIViewController {
+        let mainScreenViewModel = MainScreenViewModel(coordinator: coordinator)
         let viewController = MainScreenViewController(with: mainScreenViewModel)
         return viewController
     }

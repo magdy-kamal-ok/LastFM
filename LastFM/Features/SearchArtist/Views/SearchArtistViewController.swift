@@ -74,9 +74,9 @@ class SearchArtistViewController: BaseSearchArtistViewController {
     
     override func didSelectCellAt(indexPath: IndexPath) {
         if let _ = artistList[indexPath.row].name {
-            let viewController = AlbumsBuilder.viewController(artist: artistList[indexPath.row])
-            navigationController?.pushViewController(viewController, animated: true)
+            searchArtistViewModel.didSelectArtist(artist: artistList[indexPath.row])
         }
+        
         
     }
     

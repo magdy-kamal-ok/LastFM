@@ -31,14 +31,16 @@ class AlbumDetailsViewModel {
     private let dataSourceProvider: DataProvider<AlbumDetailsResponseModel>!
     private let albumDetailsRrepository: AlbumsDetialsRepository
     public var output: Output!
-    
-    init(dataSourceProvider: DataProvider<AlbumDetailsResponseModel>, artist: Artist, album: Album) {
+    private weak var coordinator: AlbumDetailsCoordinator?
+
+    init(dataSourceProvider: DataProvider<AlbumDetailsResponseModel>, artist: Artist, album: Album, coordinator: Coordinator?) {
         self.dataSourceProvider = dataSourceProvider
         self.artist = artist
         self.album = album
         self.albumDetailsRrepository = AlbumsDetialsRepository(dataSourceProvider: dataSourceProvider, cachingManager: RealmCachingManager(), artist: artist, album: album)
         output = Output(isLoading: isLoadingSubject.asObservable(), albumDetails: albumDetailsRrepository.output.albumDetails.asObservable(), error: errorSubject.asObservable(), isCached: albumDetailsRrepository.output.isCached)
-        bindIsCachedVariable()        
+        bindIsCachedVariable()
+        self.coordinator = coordinator as? AlbumDetailsCoordinator
     }
     
     private func saveAlbumDetails(album: Album? = nil) {

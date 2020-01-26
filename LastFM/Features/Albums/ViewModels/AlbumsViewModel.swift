@@ -33,6 +33,7 @@ class AlbumsViewModel {
     private var disposeBag = DisposeBag()
     private let dataSourceProvider: DataProvider<AlbumsResponseModel>!
     private let albumDetailsRrepository: AlbumsDetialsRepository
+    private weak var coordinator: AlbumListCoordinator?
     public var output: Output!
     var artistName: String = "" {
         didSet {
@@ -42,14 +43,18 @@ class AlbumsViewModel {
         }
     }
     
-    init(dataSourceProvider: DataProvider<AlbumsResponseModel>, artist: Artist, albumDetailsRrepository: AlbumsDetialsRepository) {
+    init(dataSourceProvider: DataProvider<AlbumsResponseModel>, artist: Artist, albumDetailsRrepository: AlbumsDetialsRepository, coordinator: Coordinator?) {
         self.dataSourceProvider = dataSourceProvider
         self.artist = artist
         self.albumDetailsRrepository = albumDetailsRrepository
         output = Output(isLoadingMore: isLoadingMoreSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), albums: albumsSubject.asObservable(), error: errorSubject.asObservable())
         handleAlbumDataResponse()
+        self.coordinator = coordinator as? AlbumListCoordinator
     }
     
+    public func didPressAlbum(album: Album) {
+        coordinator?.showAlbumsDetails(with: artist, album: album)
+    }
     
     private func fetchAlbums() {
         let albumsParameters = AlbumsParameters.init(artistName: artistName, page: page)

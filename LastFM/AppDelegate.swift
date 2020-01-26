@@ -11,10 +11,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
- 
+    var appCoordinator: AppCoordinator?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        openViewController()
+        startAppCoordinator()
         
         return true
     }
@@ -46,16 +47,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate
 {
-    func openViewController()
+    func startAppCoordinator()
     {
-        let viewController = MainScreenBuilder.viewController()
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        let navigationController = UINavigationController.init(rootViewController: viewController)
-        navigationController.setNavigationBarHidden(false, animated: false)
-        self.window?.rootViewController = navigationController
-        window?.backgroundColor = UIColor.white
-        self.window?.makeKeyAndVisible()
-        
+        let navController = UINavigationController()
+        appCoordinator = AppCoordinator(navigationController: navController)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navController
+        window?.makeKeyAndVisible()
+        appCoordinator?.start()
         
     }
+    
+    
 }

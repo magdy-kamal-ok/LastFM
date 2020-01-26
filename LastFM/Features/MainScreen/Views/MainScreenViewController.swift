@@ -45,8 +45,7 @@ class MainScreenViewController: UIViewController {
     }
     
     @objc func didPressSearchIcon(){
-        let viewController = SearchArtistBuilder.viewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        mainScreenViewModel.didClickSearchBarIcon()
     }
 }
 extension MainScreenViewController {
@@ -81,8 +80,7 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let albumDetails = albumDetailsList![indexPath.row]
-        let viewController = AlbumsDetailsBuilder.viewController(artist: albumDetails.artist, album: albumDetails.album)
-        navigationController?.pushViewController(viewController, animated: true)
+    mainScreenViewModel.disSelectAlbumDetail(albumDetailModel: albumDetails)
 
     }
     

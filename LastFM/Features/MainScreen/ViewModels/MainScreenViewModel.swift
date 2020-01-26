@@ -25,13 +25,21 @@ class MainScreenViewModel {
     private var disposeBag = DisposeBag()
     private let albumDetailsRrepository: AlbumsDetialsRepository
     public var output: Output!
+    private weak var coordinator: MainScreenCoordinator?
     
-    init() {
+    init(coordinator: Coordinator?) {
         self.albumDetailsRrepository = AlbumsDetialsRepository(dataSourceProvider: nil, cachingManager: RealmCachingManager(), artist: nil, album: nil)
         output = Output(isLoading: isLoadingSubject.asObservable(), albumDetails: self.albumDetailsRrepository.output.albumDetailsList.asObservable(), error: errorSubject.asObservable())
+        self.coordinator = coordinator as? MainScreenCoordinator
         
     }
     
+    func disSelectAlbumDetail(albumDetailModel: AlbumDetailModel) {
+        coordinator?.showAlbumDetailsView(with: albumDetailModel.album, arist: albumDetailModel.artist)
+    }
+    func didClickSearchBarIcon() {
+        coordinator?.showSearchView()
+    }
     func fetchAlbumDetials() {
         albumDetailsRrepository.fetchAlbumListDetails()
     }
