@@ -33,6 +33,7 @@ class SearchArtistViewController: BaseSearchArtistViewController {
         bindIsRefresh()
         bindIsLoadingMore()
         bindArtistList()
+        bindArtistError()
     }
     
     override func setupCellNibNames() {
@@ -78,14 +79,33 @@ class SearchArtistViewController: BaseSearchArtistViewController {
         }
         
     }
+    
+    private func showErrorAlert(error: ErrorModel) {
+        let alert = UIAlertController(title: "Error", message: error.message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 extension SearchArtistViewController {
+   
+    private func bindArtistError() {
+        searchArtistViewModel
+        .output
+        .error
+        .bind {
+            [weak self](error) in
+            guard let self = self else {return}
+            self.showErrorAlert(error: error)
+        }.disposed(by: disposeBag)
+    }
     
     private func bindArtistList() {
         searchArtistViewModel
         .output
         .artists
-        .asObservable().subscribe(onNext: { [weak self] (artists) in
+        .asObservable()
+        .subscribe(onNext: { [weak self] (artists) in
             guard let self = self else {return}
             self.artistList = artists
             self.artistsTableView.reloadData()
@@ -95,7 +115,7 @@ extension SearchArtistViewController {
     private func bindIsRefresh() {
         searchArtistViewModel
                .output
-               .isLoadingMore
+               .isRefresh
                .asObservable()
                .bind { [weak self](flag) in
                        guard let self = self else {return}

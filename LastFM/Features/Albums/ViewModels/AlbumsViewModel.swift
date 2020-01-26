@@ -17,12 +17,14 @@ class AlbumsViewModel {
             let isRefresh: Observable<Bool>
             let isLoading: Observable<Bool>
             let albums: Observable<[Album]>
+            let error: Observable<ErrorModel>
         }
     
     private var isLoadingMoreSubject: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     private var isRefreshSubject: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     private var isLoadingSubject: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     private var albumsSubject: PublishSubject<[Album]> = PublishSubject<[Album]>()
+    private var errorSubject: PublishSubject = PublishSubject<ErrorModel>()
     
     private var albumList: [Album] = []
     private var total: Int = 0
@@ -44,7 +46,7 @@ class AlbumsViewModel {
         self.dataSourceProvider = dataSourceProvider
         self.artist = artist
         self.albumDetailsRrepository = albumDetailsRrepository
-        output = Output(isLoadingMore: isLoadingMoreSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), albums: albumsSubject.asObservable())
+        output = Output(isLoadingMore: isLoadingMoreSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), albums: albumsSubject.asObservable(), error: errorSubject.asObservable())
         handleAlbumDataResponse()
     }
     
@@ -69,8 +71,14 @@ class AlbumsViewModel {
         isLoadingSubject.accept(false)
     }
     
-    private func handleError() {
-        resetAllLoaders()
+    private func handleError(error: ErrorModel?) {
+         resetAllLoaders()
+        if let error = error {
+            errorSubject.onNext(error)
+        }else {
+            let error = ErrorModel(code: LocalError.unknownError.errorCode, message: LocalError.unknownError.localizedDescription, error: LocalError.unknownError.localizedDescription, url: nil)
+            errorSubject.onNext(error)
+        }
     }
     
     public func loadMoreAlbums() {
@@ -117,11 +125,19 @@ class AlbumsViewModel {
                 if let albumResponse = response.0 {
                     self.handleAlbumListResponse(albumResponse: albumResponse)
                 }else if let error = response.1 {
-                    self.handleError()
+                    if let error = error as? ErrorModel {
+                        self.handleError(error: error)
+                    }else {
+                        self.handleError(error: nil)
+                    }
                 }
             }, onError: { [weak self] (error) in
                 guard let self = self else { return }
-                self.handleError()
+                if let error = error as? ErrorModel {
+                    self.handleError(error: error)
+                }else {
+                    self.handleError(error: nil)
+                }
             }).disposed(by: disposeBag)
     }
 }

@@ -17,12 +17,14 @@ class SearchArtistViewModel {
             let isRefresh: Observable<Bool>
             let isLoading: Observable<Bool>
             let artists: Observable<[Artist]>
+            let error: Observable<ErrorModel>
         }
     
     private var isLoadingMoreSubject: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     private var isRefreshSubject: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     private var isLoadingSubject: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     private var artistsSubject: PublishSubject<[Artist]> = PublishSubject<[Artist]>()
+    private var errorSubject: PublishSubject = PublishSubject<ErrorModel>()
     
     private var artistList: [Artist] = []
     private var total: Int = 0
@@ -40,7 +42,7 @@ class SearchArtistViewModel {
     
     init(dataSourceProvider: DataProvider<ArtistResponseModel>) {
         self.dataSourceProvider = dataSourceProvider
-        output = Output(isLoadingMore: isLoadingMoreSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), artists: artistsSubject.asObservable())
+        output = Output(isLoadingMore: isLoadingMoreSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), artists: artistsSubject.asObservable(), error: errorSubject.asObservable())
         handleArtistDataResponse()
     }
     
@@ -65,8 +67,14 @@ class SearchArtistViewModel {
         isLoadingSubject.accept(false)
     }
     
-    private func handleError() {
-        resetAllLoaders()
+    private func handleError(error: ErrorModel?) {
+         resetAllLoaders()
+        if let error = error {
+            errorSubject.onNext(error)
+        }else {
+            let error = ErrorModel(code: LocalError.unknownError.errorCode, message: LocalError.unknownError.localizedDescription, error: LocalError.unknownError.localizedDescription, url: nil)
+            errorSubject.onNext(error)
+        }
     }
     
     public func loadMoreArtists() {
@@ -112,11 +120,19 @@ class SearchArtistViewModel {
                 if let artistResponse = response.0 {
                     self.handleArtistListResponse(artistResponse: artistResponse)
                 }else if let error = response.1 {
-                    self.handleError()
+                    if let error = error as? ErrorModel {
+                        self.handleError(error: error)
+                    }else {
+                        self.handleError(error: nil)
+                    }
                 }
             }, onError: { [weak self] (error) in
                 guard let self = self else { return }
-                self.handleError()
+                if let error = error as? ErrorModel {
+                    self.handleError(error: error)
+                }else {
+                    self.handleError(error: nil)
+                }
             }).disposed(by: disposeBag)
     }
 }

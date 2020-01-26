@@ -36,6 +36,7 @@ class AlbumsViewController: BaseAlbumsViewController {
         bindIsRefresh()
         bindIsLoadingMore()
         bindAlbumList()
+        bindAlbumsError()
         albumsViewModel.artistName = artist.name ?? ""
     }
     
@@ -82,10 +83,26 @@ class AlbumsViewController: BaseAlbumsViewController {
     override func getSectionsCount() -> Int {
         return 1
     }
+    private func showErrorAlert(error: ErrorModel) {
+        let alert = UIAlertController(title: "Error", message: error.message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension AlbumsViewController {
 
+    private func bindAlbumsError() {
+        albumsViewModel
+        .output
+        .error
+        .bind {
+            [weak self](error) in
+            guard let self = self else {return}
+            self.showErrorAlert(error: error)
+        }.disposed(by: disposeBag)
+    }
+    
     private func bindAlbumList() {
         albumsViewModel
         .output
@@ -100,7 +117,7 @@ extension AlbumsViewController {
     private func bindIsRefresh() {
         albumsViewModel
                .output
-               .isLoadingMore
+               .isRefresh
                .asObservable()
                .bind { [weak self](flag) in
                        guard let self = self else {return}

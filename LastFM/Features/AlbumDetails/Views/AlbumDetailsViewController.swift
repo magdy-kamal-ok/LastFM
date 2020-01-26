@@ -41,6 +41,7 @@ class AlbumDetailsViewController: UIViewController {
         bindIsLoading()
         bindTrackList()
         bindDownloadButtonImage()
+        bindAlbumsDetailsError()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -65,7 +66,7 @@ extension AlbumDetailsViewController {
         tracksCollectionView.dataSource = self
     }
     
-    func setupViewData() {
+    private func setupViewData() {
         title = album.name
         artistNameLabel.text = artist.name
         artistListenserLabel.text = artist.numberOfListeners
@@ -75,6 +76,12 @@ extension AlbumDetailsViewController {
         if let imageUrl = artist.image, let url = URL(string: imageUrl)  {
             self.artistImageView.af_setImage(withURL: url)
         }
+    }
+    
+    private func showErrorAlert(error: ErrorModel) {
+        let alert = UIAlertController(title: "Error", message: error.message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 extension AlbumDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -98,6 +105,18 @@ extension AlbumDetailsViewController: UICollectionViewDelegate, UICollectionView
 }
 
 extension AlbumDetailsViewController {
+    
+    private func bindAlbumsDetailsError() {
+        albumDetailsViewModel
+        .output
+        .error
+        .bind {
+            [weak self](error) in
+            guard let self = self else {return}
+            self.showErrorAlert(error: error)
+        }.disposed(by: disposeBag)
+    }
+    
     private func bindDownloadButtonImage() {
         albumDetailsViewModel
         .output

@@ -68,8 +68,13 @@ class AlbumDetailsViewModel {
         albumDetailsRrepository.checkIfIsAlbumAlreadySaved()
     }
     
-    private func handleError() {
-        
+    private func handleError(error: ErrorModel?) {
+        if let error = error {
+            errorSubject.onNext(error)
+        }else {
+            let error = ErrorModel(code: LocalError.unknownError.errorCode, message: LocalError.unknownError.localizedDescription, error: LocalError.unknownError.localizedDescription, url: nil)
+            errorSubject.onNext(error)
+        }
     }
     
     private func bindIsCachedVariable() {

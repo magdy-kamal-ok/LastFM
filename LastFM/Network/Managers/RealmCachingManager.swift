@@ -22,8 +22,6 @@ public class RealmCachingManager: CachingManagerProtocol {
     convenience public init() {
         let realm = (try? Realm())!
         self.init(realm: realm)
-        print(Realm.Configuration.defaultConfiguration.fileURL)
-        
     }
     
     public func fetch<U>(predicate: NSPredicate?, type: U.Type) -> U? {
