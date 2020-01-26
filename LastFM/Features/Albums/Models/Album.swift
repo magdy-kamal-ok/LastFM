@@ -13,5 +13,4 @@ public struct Album {
     var name: String?
     var image: String?
     var numberOfPlays: Int?
-    var isCached: Bool = false
 }

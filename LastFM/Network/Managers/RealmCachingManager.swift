@@ -44,6 +44,24 @@ public class RealmCachingManager: CachingManagerProtocol {
         }
     }
     
+    public func fetchList<U>(predicate: NSPredicate?, type: U.Type) -> [U]? {
+        do {
+            if let type = type as? Object.Type {
+                if let predicate = predicate {
+                    let objects = self.realm.objects(type)
+                    return objects.filter(predicate).itemsResltToArray() as? [U]
+                }else {
+                    let objects = self.realm.objects(type)
+                    return objects.itemsResltToArray() as? [U]
+                }
+            }else {
+                return nil
+            }
+        }catch {
+            return nil
+        }
+    }
+    
     public func insert<U>(genericDataModel: U) -> U? {
         do {
             if let genericDataModel = genericDataModel as? Object

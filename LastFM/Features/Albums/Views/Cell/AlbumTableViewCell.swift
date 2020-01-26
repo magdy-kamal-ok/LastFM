@@ -18,8 +18,9 @@ class AlbumTableViewCell: UITableViewCell {
     @IBOutlet weak var albumPlaysCountLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
     private var disposeBag = DisposeBag()
+    private var album: Album?
     var albumDetailsViewModel: AlbumDetailsViewModel?
-    var didPressDownloadButton: (()->Void)?
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -27,8 +28,8 @@ class AlbumTableViewCell: UITableViewCell {
     }
     override func prepareForReuse() {
         super.prepareForReuse()
-        didPressDownloadButton = nil
         albumDetailsViewModel = nil
+        album = nil
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,6 +37,7 @@ class AlbumTableViewCell: UITableViewCell {
     }
     
     func configureCell(artist: Artist, album: Album) {
+        self.album = album
         albumNameLabel.text = album.name
         if let playsCount = album.numberOfPlays {
             albumPlaysCountLabel.text = String(playsCount)
@@ -46,11 +48,12 @@ class AlbumTableViewCell: UITableViewCell {
         let requestHandler = RequestFactory.init(url: Constants.baseUrl)
         let dataSourceProvider = DataProvider<AlbumDetailsResponseModel>(requestHandler: requestHandler)
         albumDetailsViewModel = AlbumDetailsViewModel(dataSourceProvider: dataSourceProvider, artist: artist, album: album)
+        albumDetailsViewModel?.checkifAlbumExists()
         bindDownloadButtonImage()
     }
     
     @IBAction func didPressDownloadButton(_ sender: UIButton) {
-        albumDetailsViewModel?.handleDownloadButtonAction()
+        albumDetailsViewModel?.handleDownloadButtonAction(album: album)
     }
     private func bindDownloadButtonImage() {
         albumDetailsViewModel?

@@ -24,13 +24,12 @@ class AlbumDetailsViewController: UIViewController {
     private var albumDetailsViewModel: AlbumDetailsViewModel!
     private var artist: Artist
     private var album: Album
-    private var tracks: [TrackModel]?
+    private var tracks: [Track]?
     private var disposeBag = DisposeBag()
    
-    init(with viewModel: AlbumDetailsViewModel, artist: Artist, album: Album, tracks: [TrackModel]?) {
+    init(with viewModel: AlbumDetailsViewModel, artist: Artist, album: Album) {
         self.artist = artist
         self.album = album
-        self.tracks = tracks
         let bundel = Bundle(for: AlbumDetailsViewController.self)
         super.init(nibName: "AlbumDetailsViewController", bundle: bundel)
         self.albumDetailsViewModel = viewModel
@@ -46,7 +45,7 @@ class AlbumDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupViewData()
-        
+        albumDetailsViewModel.fetchAlbumDetials()
     }
     
     required init?(coder: NSCoder) {
@@ -116,7 +115,8 @@ extension AlbumDetailsViewController {
     private func bindTrackList() {
         albumDetailsViewModel
         .output
-        .tracks
+        .albumDetails
+        .map{$0.tracks}
         .asObservable().subscribe(onNext: { [weak self] (tracks) in
             guard let self = self else {return}
             self.tracks = tracks

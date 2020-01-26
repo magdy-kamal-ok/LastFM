@@ -14,7 +14,7 @@ public struct AlbumsDetailsBuilder {
         let requestHandler = RequestFactory.init(url: Constants.baseUrl)
         let dataSourceProvider = DataProvider<AlbumDetailsResponseModel>(requestHandler: requestHandler)
         let albumDetailsViewModel = AlbumDetailsViewModel(dataSourceProvider: dataSourceProvider, artist: artist, album: album)
-        let viewController = AlbumDetailsViewController(with: albumDetailsViewModel, artist: artist, album: album, tracks: nil)
+        let viewController = AlbumDetailsViewController(with: albumDetailsViewModel, artist: artist, album: album)
         return viewController
     }
 }

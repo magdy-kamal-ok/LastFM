@@ -12,6 +12,8 @@ public protocol CachingManagerProtocol {
     
     func fetch<U>(predicate: NSPredicate?, type: U.Type) -> U?
     
+    func fetchList<U>(predicate: NSPredicate?, type: U.Type) -> [U]?
+    
     func insert<U>(genericDataModel: U) -> U?
     
     func delete<U>(predicate: NSPredicate?, type: U.Type) -> U?

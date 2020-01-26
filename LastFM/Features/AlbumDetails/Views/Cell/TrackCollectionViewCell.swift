@@ -17,7 +17,7 @@ class TrackCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func configureCell(track: TrackModel) {
+    func configureCell(track: Track) {
         trackNameLabel.text = track.name
         trackDurationLabel.text = track.duration
     }

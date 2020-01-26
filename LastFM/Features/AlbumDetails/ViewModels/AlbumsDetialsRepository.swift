@@ -13,36 +13,42 @@ import RxCocoa
 class AlbumsDetialsRepository  {
     
     struct Output {
-            let albumDetails: Observable<AlbumDetailsResponseModel>
+            let albumDetails: Observable<AlbumDetailModel>
+            let albumDetailsList: Observable<[AlbumDetailModel]>
             let isCached: Observable<Bool>
             let error: Observable<ErrorModel>
         }
     
-    private let dataSourceProvider: DataProvider<AlbumDetailsResponseModel>!
+    private let dataSourceProvider: DataProvider<AlbumDetailsResponseModel>?
     private let cachingManager: CachingManagerProtocol!
+    private var albumDetailsModelSubject: BehaviorRelay = BehaviorRelay<AlbumDetailModel>(value: AlbumDetailModel(artist: Artist(), album: Album(), tracks: []))
     private var albumDetailsSubject: BehaviorRelay = BehaviorRelay<AlbumDetailsResponseModel>(value: AlbumDetailsResponseModel())
+    private var albumDetailsListSubject: PublishSubject<[AlbumDetailModel]> = PublishSubject<[AlbumDetailModel]>()
     private var isCachedSubject: BehaviorRelay = BehaviorRelay<Bool>(value: false)
     private var errorSubject: PublishSubject = PublishSubject<ErrorModel>()
     private var disposeBag = DisposeBag()
-    private var artist: Artist
+    private var artist: Artist?
     private var album: Album?
     private var isAutomaticalyCaching: Bool = false
     public var output: Output!
     
-    init(dataSourceProvider: DataProvider<AlbumDetailsResponseModel>, cachingManager: CachingManagerProtocol, artist: Artist, album: Album?) {
+    init(dataSourceProvider: DataProvider<AlbumDetailsResponseModel>?, cachingManager: CachingManagerProtocol, artist: Artist?, album: Album?) {
         self.dataSourceProvider = dataSourceProvider
         self.cachingManager = cachingManager
         self.album = album
         self.artist = artist
-        output = Output(albumDetails: albumDetailsSubject.asObservable(), isCached: isCachedSubject.asObservable(), error: errorSubject.asObservable())
+        output = Output(albumDetails: albumDetailsModelSubject.asObservable(), albumDetailsList: albumDetailsListSubject.asObservable(), isCached: isCachedSubject.asObservable(), error: errorSubject.asObservable())
         handleAlbumDataResponse()
     }
     
-    func fetchAlbumDetails() {
-        guard let album = album else {return}
-        let albumDetailsParameters = AlbumDetailsParameters(artistName: artist.name!, album: album.name!)
-        self.dataSourceProvider.setApiParameters(params: albumDetailsParameters.dictionary)
-        self.dataSourceProvider.execute()
+    public func fetchAlbumDetails() {
+        guard let album = album, let artist = artist else {return}
+        checkIfIsAlbumAlreadySaved()
+        if !isCachedSubject.value {
+            let albumDetailsParameters = AlbumDetailsParameters(artistName: artist.name!, album: album.name!)
+            self.dataSourceProvider?.setApiParameters(params: albumDetailsParameters.dictionary)
+            self.dataSourceProvider?.execute()
+        }
         
     }
     
@@ -52,6 +58,8 @@ class AlbumsDetialsRepository  {
         fetchAlbumDetails()
         
     }
+    
+
     
     private func handleError(error: ErrorModel?) {
         if let error = error {
@@ -72,8 +80,20 @@ class AlbumsDetialsRepository  {
         self.handleError(error: error)
     }
     
+    private func failedToFetchFromCache() {
+        let error = ErrorModel(code: LocalError.noCached.errorCode, message: LocalError.noCached.localizedDescription, error: LocalError.noCached.localizedDescription, url: nil)
+        self.handleError(error: error)
+    }
+    
+    func fetchAlbumListDetails() {
+        if let albumDetailsList = cachingManager.fetchList(predicate: nil, type: LocalAlbumDetailsModel.self) {
+            albumDetailsListSubject.onNext(albumDetailsList.map{AlbumDetailModel(localAlbumDetailsModel: $0)})
+        }else {
+            failedToFetchFromCache()
+        }
+    }
     public func saveAlbumToCache() {
-        guard let album = album else {return}
+        guard let album = album, let artist = artist else {return}
         let albumDetailsDesponse = albumDetailsSubject.value
         let localArtistModel = LocalArtistModel(artistId: artist.id, name: artist.name, image: artist.image, numberOfListners: artist.numberOfListeners)
         let localAlbumModel = LocalAlbumModel(albumId: album.id, name: album.name, image: album.image, numberOfPlays: albumDetailsDesponse.albumDetailsModel?.playcount)
@@ -91,7 +111,7 @@ class AlbumsDetialsRepository  {
     }
     
     func deleteAlbumFromCache() {
-        guard let album = album else {return}
+        guard let album = album, let artist = artist else {return}
         let predicate = NSPredicate.init(format: "artistId=%@ And albumId=%@", artist.id, (album.id)!)
         if let _ =  cachingManager.delete(predicate: predicate, type: LocalAlbumDetailsModel.self) {
                 isCachedSubject.accept(false)
@@ -106,10 +126,12 @@ class AlbumsDetialsRepository  {
         deleteAlbumFromCache()
     }
     
-    private func checkIfIsAlbumAlreadySaved() {
-        guard let album = album else {return}
-        if let localAlbumDetails = cachingManager.fetch(predicate: NSPredicate.init(format: "artistId=%@ And albumId=%@", self.artist.id, (album.id)!), type: LocalAlbumDetailsModel.self) {
+    public func checkIfIsAlbumAlreadySaved() {
+        guard let album = album, let artist = artist else {return}
+        if let localAlbumDetails = cachingManager.fetch(predicate: NSPredicate.init(format: "artistId=%@ And albumId=%@", artist.id, (album.id)!), type: LocalAlbumDetailsModel.self) {
             if localAlbumDetails.albumId == album.id {
+                albumDetailsModelSubject.accept(AlbumDetailModel(localAlbumDetailsModel: localAlbumDetails))
+
                 isCachedSubject.accept(true)
             }else {
                 isCachedSubject.accept(false)
@@ -119,15 +141,18 @@ class AlbumsDetialsRepository  {
     }
     
     private func handleAlbumDetailsResponse(albumDetailsDesponse: AlbumDetailsResponseModel) {
+        guard let album = album, let artist = artist else {return}
+        let tracks = albumDetailsDesponse.albumDetailsModel?.tracksModel?.tracks?.map{Track(name: $0.name, duration: $0.duration)}  ?? []
+        let albumDetails = AlbumDetailModel(artist: artist, album: album, tracks: tracks)
+        albumDetailsModelSubject.accept(albumDetails)
         albumDetailsSubject.accept(albumDetailsDesponse)
-        checkIfIsAlbumAlreadySaved()
         if isAutomaticalyCaching {
             saveAlbumToCache()
         }
     }
     
     private func handleAlbumDataResponse() {
-        dataSourceProvider
+        dataSourceProvider?
             .observableResponse
             .subscribe(onNext: { [weak self] (response) in
                 guard let self = self else { return }
