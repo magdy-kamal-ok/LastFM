@@ -70,7 +70,7 @@ class LocalAlbumModel: Object {
     
     
     override class func primaryKey() -> String? {
-        return "albumId";
+        return "albumId"
     }
 }
 

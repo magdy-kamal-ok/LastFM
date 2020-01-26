@@ -75,6 +75,7 @@
 		04EE186723D907BA00F1E4B3 /* CodableParserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE186623D907BA00F1E4B3 /* CodableParserManager.swift */; };
 		04EE186923D9089D00F1E4B3 /* AlamofireApiClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE186823D9089D00F1E4B3 /* AlamofireApiClientManager.swift */; };
 		04EE186B23D909C900F1E4B3 /* RealmCachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE186A23D909C900F1E4B3 /* RealmCachingManager.swift */; };
+		04FD533E23DE2CE0002C7BA4 /* RealmCachingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD533D23DE2CE0002C7BA4 /* RealmCachingManagerTests.swift */; };
 		723327585D7F7B2558661E14 /* Pods_LastFM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8935F1C12E6EDB9498B913 /* Pods_LastFM.framework */; };
 		BCF5FE3329A02AF65C3E9B27 /* Pods_LastFMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156063B18FBE66E9575D134C /* Pods_LastFMTests.framework */; };
 		CD9CA0A56FA28C08D8699CDD /* Pods_LastFM_LastFMUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2398460075EAA83D591B2CE6 /* Pods_LastFM_LastFMUITests.framework */; };
@@ -172,6 +173,7 @@
 		04EE186623D907BA00F1E4B3 /* CodableParserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableParserManager.swift; sourceTree = "<group>"; };
 		04EE186823D9089D00F1E4B3 /* AlamofireApiClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireApiClientManager.swift; sourceTree = "<group>"; };
 		04EE186A23D909C900F1E4B3 /* RealmCachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCachingManager.swift; sourceTree = "<group>"; };
+		04FD533D23DE2CE0002C7BA4 /* RealmCachingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCachingManagerTests.swift; sourceTree = "<group>"; };
 		156063B18FBE66E9575D134C /* Pods_LastFMTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LastFMTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2398460075EAA83D591B2CE6 /* Pods_LastFM_LastFMUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LastFM_LastFMUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AEEC72A213B4A4AC4236AA1 /* Pods-LastFM-LastFMUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LastFM-LastFMUITests.debug.xcconfig"; path = "Target Support Files/Pods-LastFM-LastFMUITests/Pods-LastFM-LastFMUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 			children = (
 				047204AB23D7B4E20086B7B0 /* LastFMTests.swift */,
 				047204AD23D7B4E20086B7B0 /* Info.plist */,
+				04FD533D23DE2CE0002C7BA4 /* RealmCachingManagerTests.swift */,
 			);
 			path = LastFMTests;
 			sourceTree = "<group>";
@@ -946,6 +949,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047204AC23D7B4E20086B7B0 /* LastFMTests.swift in Sources */,
+				04FD533E23DE2CE0002C7BA4 /* RealmCachingManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
