@@ -74,6 +74,7 @@
 		04B7C16823DEB51800914952 /* ArtistResponseModelStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7C16723DEB51800914952 /* ArtistResponseModelStub.swift */; };
 		04B7C16A23DEB70A00914952 /* ArtistModelFakeStub.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B7C16923DEB70A00914952 /* ArtistModelFakeStub.json */; };
 		04B7C16C23DEB7EA00914952 /* MockedRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7C16B23DEB7EA00914952 /* MockedRequestFactory.swift */; };
+		04B7C16E23DEC39800914952 /* SearchArtistViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7C16D23DEC39800914952 /* SearchArtistViewModelTests.swift */; };
 		04EE185323D900E900F1E4B3 /* ErrorTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE185223D900E900F1E4B3 /* ErrorTypes.swift */; };
 		04EE185523D9012000F1E4B3 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE185423D9012000F1E4B3 /* RequestMethod.swift */; };
 		04EE185723D901E200F1E4B3 /* RequestHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE185623D901E200F1E4B3 /* RequestHandlerProtocol.swift */; };
@@ -182,6 +183,7 @@
 		04B7C16723DEB51800914952 /* ArtistResponseModelStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistResponseModelStub.swift; sourceTree = "<group>"; };
 		04B7C16923DEB70A00914952 /* ArtistModelFakeStub.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ArtistModelFakeStub.json; sourceTree = "<group>"; };
 		04B7C16B23DEB7EA00914952 /* MockedRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedRequestFactory.swift; sourceTree = "<group>"; };
+		04B7C16D23DEC39800914952 /* SearchArtistViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistViewModelTests.swift; sourceTree = "<group>"; };
 		04EE185223D900E900F1E4B3 /* ErrorTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTypes.swift; sourceTree = "<group>"; };
 		04EE185423D9012000F1E4B3 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 		04EE185623D901E200F1E4B3 /* RequestHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandlerProtocol.swift; sourceTree = "<group>"; };
@@ -570,6 +572,7 @@
 				04B7C16023DEB22B00914952 /* RequestFactoryTests.swift */,
 				04B7C16223DEB3ED00914952 /* DataProviderTests.swift */,
 				04B7C16423DEB43100914952 /* NetworkParserTests.swift */,
+				04B7C16D23DEC39800914952 /* SearchArtistViewModelTests.swift */,
 			);
 			path = LastFMTests;
 			sourceTree = "<group>";
@@ -1011,6 +1014,7 @@
 				04B7C16123DEB22B00914952 /* RequestFactoryTests.swift in Sources */,
 				04B7C16523DEB43100914952 /* NetworkParserTests.swift in Sources */,
 				047204AC23D7B4E20086B7B0 /* LastFMTests.swift in Sources */,
+				04B7C16E23DEC39800914952 /* SearchArtistViewModelTests.swift in Sources */,
 				04B7C15923DEAC8F00914952 /* MockedNetworkManager.swift in Sources */,
 				04B7C16323DEB3ED00914952 /* DataProviderTests.swift in Sources */,
 				04FD533E23DE2CE0002C7BA4 /* RealmCachingManagerTests.swift in Sources */,

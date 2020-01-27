@@ -44,7 +44,7 @@ class DataProviderTests: XCTestCase {
 
 
     func testDataProviderFailure() {
-        let expectation = XCTestExpectation(description: "testDataProviderSuccess")
+        let expectation = XCTestExpectation(description: "testDataProviderFailure")
         let requestFactory = MockedRequestFactory(fileName: "ArtistModelFakeStub")
         sut = DataProvider(requestHandler: requestFactory, apiClientManager: MockedNetworkManager(), parser: CodableParserManager())
         var artistResponseModelStub: ArtistResponseModelStub?
