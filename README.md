@@ -1,6 +1,6 @@
 
 # LastFM
-Release notes : Xcode Version : Developed in Xcode 11.3.1 Swift Version : Swift 5.0 Architecture : MVVM-C, (using RxSwift, RxCocoa).
+Release notes : Xcode Version : Developed in Xcode 11.3.1 Swift Version : Swift 5.0, Architecture : MVVM-C (using RxSwift, RxCocoa).
 
 # functionality:
 	1- Search Artist.
