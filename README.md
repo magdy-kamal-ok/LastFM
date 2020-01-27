@@ -7,7 +7,7 @@ Release notes : Xcode Version : Developed in Xcode 11.3.1 Swift Version : Swift 
   2- Load Albums by selected artist you want.
   3- Show Album Details info, and its tracks.
   4- Cache, and Delete Album if needed.
-  4- Write unite, and ui tests.
+  4- Write Unit, and UI tests.
 
 
 
