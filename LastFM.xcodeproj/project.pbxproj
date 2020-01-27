@@ -258,6 +258,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		01FAB24323DF8380008A5400 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				0426064723DB7C77005D2608 /* AlbumsDetialsRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		040F4BA523DCC68B00ED71FB /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +379,7 @@
 		0426063A23DB6C11005D2608 /* AlbumDetails */ = {
 			isa = PBXGroup;
 			children = (
+				01FAB24323DF8380008A5400 /* Repositories */,
 				0426063E23DB6CA3005D2608 /* Builder */,
 				0426063D23DB6C98005D2608 /* ViewModels */,
 				0426063C23DB6C92005D2608 /* Models */,
@@ -404,7 +413,6 @@
 			isa = PBXGroup;
 			children = (
 				0426064523DB7C58005D2608 /* AlbumDetailsViewModel.swift */,
-				0426064723DB7C77005D2608 /* AlbumsDetialsRepository.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

@@ -43,6 +43,7 @@ class AlbumsDetialsRepository  {
     
     public func fetchAlbumDetails() {
         guard let album = album, let artist = artist else {return}
+        // check if the album is cached then get the cached data for faster view to appear to user
         checkIfIsAlbumAlreadySaved()
         if !isCachedSubject.value {
             let albumDetailsParameters = AlbumDetailsParameters(artistName: artist.name!, album: album.name!)
@@ -58,8 +59,6 @@ class AlbumsDetialsRepository  {
         fetchAlbumDetails()
         
     }
-    
-
     
     private func handleError(error: ErrorModel?) {
         if let error = error {
@@ -92,6 +91,8 @@ class AlbumsDetialsRepository  {
             failedToFetchFromCache()
         }
     }
+    
+    /// convert the response data to local cached Tables, and insert converted data to Cache.
     public func saveAlbumToCache() {
         guard let album = album, let artist = artist else {return}
         let albumDetailsDesponse = albumDetailsSubject.value
