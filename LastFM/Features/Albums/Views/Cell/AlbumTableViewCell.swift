@@ -43,8 +43,9 @@ class AlbumTableViewCell: UITableViewCell {
         }
         self.albumImageView.downloadImageFromUrlString(url: album.image)
         let requestHandler = RequestFactory(url: Constants.baseUrl)
-        let dataSourceProvider = DataProvider<AlbumDetailsResponseModel>(requestHandler: requestHandler)
-        albumDetailsViewModel = AlbumDetailsViewModel(dataSourceProvider: dataSourceProvider, artist: artist, album: album, coordinator: nil)
+        let dataProvider = DataProvider<AlbumDetailsResponseModel>(requestHandler: requestHandler)
+        let albumsDetialsRepository = AlbumsDetialsRepository(dataProvider: dataProvider, cachingManager: RealmCachingManager(), artist: artist, album: album)
+        albumDetailsViewModel = AlbumDetailsViewModel(albumDetailsRrepository: albumsDetialsRepository, artist: artist, album: album, coordinator: nil)
         albumDetailsViewModel?.checkifAlbumExists()
         bindDownloadButtonImage()
     }

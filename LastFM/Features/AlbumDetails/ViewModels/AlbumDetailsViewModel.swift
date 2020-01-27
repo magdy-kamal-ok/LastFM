@@ -28,16 +28,14 @@ class AlbumDetailsViewModel {
     private var isCached = false
     private var artist: Artist
     private var album: Album
-    private let dataSourceProvider: DataProvider<AlbumDetailsResponseModel>!
     private let albumDetailsRrepository: AlbumsDetialsRepository
     public var output: Output!
     private weak var coordinator: AlbumDetailsCoordinator?
 
-    init(dataSourceProvider: DataProvider<AlbumDetailsResponseModel>, artist: Artist, album: Album, coordinator: Coordinator?) {
-        self.dataSourceProvider = dataSourceProvider
+    init(albumDetailsRrepository: AlbumsDetialsRepository, artist: Artist, album: Album, coordinator: Coordinator?) {
         self.artist = artist
         self.album = album
-        self.albumDetailsRrepository = AlbumsDetialsRepository(dataSourceProvider: dataSourceProvider, cachingManager: RealmCachingManager(), artist: artist, album: album)
+        self.albumDetailsRrepository = albumDetailsRrepository
         output = Output(isLoading: isLoadingSubject.asObservable(), albumDetails: albumDetailsRrepository.output.albumDetails.asObservable(), error: errorSubject.asObservable(), isCached: albumDetailsRrepository.output.isCached)
         bindIsCachedVariable()
         self.coordinator = coordinator as? AlbumDetailsCoordinator
@@ -81,10 +79,10 @@ class AlbumDetailsViewModel {
     
     private func bindIsCachedVariable() {
         output
-        .isCached
-        .asObservable().subscribe(onNext: { [weak self] (isCached) in
-                guard let self = self else {return}
-                self.isCached = isCached
-            }).disposed(by: disposeBag)
+            .isCached
+            .asObservable().subscribe(onNext: { [weak self] (isCached) in
+                    guard let self = self else {return}
+                    self.isCached = isCached
+                }).disposed(by: disposeBag)
     }
 }

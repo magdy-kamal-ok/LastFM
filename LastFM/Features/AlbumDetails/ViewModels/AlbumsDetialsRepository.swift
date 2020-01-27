@@ -19,7 +19,7 @@ class AlbumsDetialsRepository  {
             let error: Observable<ErrorModel>
         }
     
-    private let dataSourceProvider: DataProvider<AlbumDetailsResponseModel>?
+    private let dataProvider: DataProvider<AlbumDetailsResponseModel>?
     private let cachingManager: CachingManagerProtocol!
     private var albumDetailsModelSubject: BehaviorRelay = BehaviorRelay<AlbumDetailModel>(value: AlbumDetailModel(artist: Artist(), album: Album(), tracks: []))
     private var albumDetailsSubject: BehaviorRelay = BehaviorRelay<AlbumDetailsResponseModel>(value: AlbumDetailsResponseModel())
@@ -32,8 +32,8 @@ class AlbumsDetialsRepository  {
     private var isAutomaticalyCaching: Bool = false
     public var output: Output!
     
-    init(dataSourceProvider: DataProvider<AlbumDetailsResponseModel>?, cachingManager: CachingManagerProtocol, artist: Artist?, album: Album?) {
-        self.dataSourceProvider = dataSourceProvider
+    init(dataProvider: DataProvider<AlbumDetailsResponseModel>?, cachingManager: CachingManagerProtocol, artist: Artist?, album: Album?) {
+        self.dataProvider = dataProvider
         self.cachingManager = cachingManager
         self.album = album
         self.artist = artist
@@ -46,8 +46,8 @@ class AlbumsDetialsRepository  {
         checkIfIsAlbumAlreadySaved()
         if !isCachedSubject.value {
             let albumDetailsParameters = AlbumDetailsParameters(artistName: artist.name!, album: album.name!)
-            self.dataSourceProvider?.setApiParameters(params: albumDetailsParameters.dictionary)
-            self.dataSourceProvider?.execute()
+            self.dataProvider?.setApiParameters(params: albumDetailsParameters.dictionary)
+            self.dataProvider?.execute()
         }
         
     }
@@ -96,7 +96,7 @@ class AlbumsDetialsRepository  {
         guard let album = album, let artist = artist else {return}
         let albumDetailsDesponse = albumDetailsSubject.value
         let localArtistModel = LocalArtistModel(artistId: artist.id, name: artist.name, image: artist.image, numberOfListners: artist.numberOfListeners)
-        let localAlbumModel = LocalAlbumModel(albumId: album.id, name: album.name, image: album.image, numberOfPlays: albumDetailsDesponse.albumDetailsModel?.playcount)
+        let localAlbumModel = LocalAlbumModel(albumId: album.id, name: album.name, image: album.image, numberOfPlays: album.numberOfPlays)
         var localTracks: [LocalTrackModel] = []
         if let tracks = albumDetailsDesponse.albumDetailsModel?.tracksModel?.tracks {
          localTracks = tracks.map{LocalTrackModel(name: $0.name, duration: $0.duration)}
@@ -152,7 +152,7 @@ class AlbumsDetialsRepository  {
     }
     
     private func handleAlbumDataResponse() {
-        dataSourceProvider?
+        dataProvider?
             .observableResponse
             .subscribe(onNext: { [weak self] (response) in
                 guard let self = self else { return }

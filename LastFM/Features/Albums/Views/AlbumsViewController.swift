@@ -98,64 +98,64 @@ extension AlbumsViewController {
 
     private func bindAlbumsError() {
         albumsViewModel
-        .output
-        .error
-        .bind {
-            [weak self](error) in
-            guard let self = self else {return}
-            self.showErrorAlert(error: error)
-        }.disposed(by: disposeBag)
+            .output
+            .error
+            .bind {
+                [weak self](error) in
+                guard let self = self else {return}
+                self.showErrorAlert(error: error)
+            }.disposed(by: disposeBag)
     }
     
     private func bindAlbumList() {
         albumsViewModel
-        .output
-        .albums
-        .asObservable().subscribe(onNext: { [weak self] (albums) in
-            guard let self = self else {return}
-            self.albumsList = albums
-            self.albumsTableView.reloadData()
-        }).disposed(by: disposeBag)
+            .output
+            .albums
+            .asObservable().subscribe(onNext: { [weak self] (albums) in
+                guard let self = self else {return}
+                self.albumsList = albums
+                self.albumsTableView.reloadData()
+            }).disposed(by: disposeBag)
     }
     
     private func bindIsRefresh() {
         albumsViewModel
-               .output
-               .isRefresh
-               .asObservable()
-               .bind { [weak self](flag) in
-                       guard let self = self else {return}
-                       if flag {
-                           self.startRefreshTableView()
-                       }else {
-                           self.endRefreshTableView()
-                       }
-               }.disposed(by: disposeBag)
+            .output
+            .isRefresh
+            .asObservable()
+            .bind { [weak self](flag) in
+               guard let self = self else {return}
+               if flag {
+                   self.startRefreshTableView()
+               }else {
+                   self.endRefreshTableView()
+               }
+            }.disposed(by: disposeBag)
         
     }
     
     private func bindIsLoadingMore() {
         albumsViewModel
-        .output
-        .isLoadingMore
-        .asObservable()
-        .bind { [weak self](flag) in
-                guard let self = self else {return}
-                if flag {
-                    self.showLoadingMoreView()
-                }else {
-                    self.removeLoadingMoreView()
-                }
-        }.disposed(by: disposeBag)
+            .output
+            .isLoadingMore
+            .asObservable()
+            .bind { [weak self](flag) in
+                    guard let self = self else {return}
+                    if flag {
+                        self.showLoadingMoreView()
+                    }else {
+                        self.removeLoadingMoreView()
+                    }
+            }.disposed(by: disposeBag)
     }
     
     private func bindIsLoading() {
         albumsViewModel
-        .output
-        .isLoading
-        .map { !$0 }
-        .bind(to: self.loadingIndicator.rx.isHidden)
-        .disposed(by: self.disposeBag)
+            .output
+            .isLoading
+            .map { !$0 }
+            .bind(to: self.loadingIndicator.rx.isHidden)
+            .disposed(by: self.disposeBag)
     }
     
 }

@@ -31,8 +31,7 @@ class AlbumsViewModel {
     private var page: Int = 1
     private var artist: Artist
     private var disposeBag = DisposeBag()
-    private let dataSourceProvider: DataProvider<AlbumsResponseModel>!
-    private let albumDetailsRrepository: AlbumsDetialsRepository
+    private let dataProvider: DataProvider<AlbumsResponseModel>!
     private weak var coordinator: AlbumListCoordinator?
     public var output: Output!
     var artistName: String = "" {
@@ -43,10 +42,9 @@ class AlbumsViewModel {
         }
     }
     
-    init(dataSourceProvider: DataProvider<AlbumsResponseModel>, artist: Artist, albumDetailsRrepository: AlbumsDetialsRepository, coordinator: Coordinator?) {
-        self.dataSourceProvider = dataSourceProvider
+    init(dataProvider: DataProvider<AlbumsResponseModel>, artist: Artist, coordinator: Coordinator?) {
+        self.dataProvider = dataProvider
         self.artist = artist
-        self.albumDetailsRrepository = albumDetailsRrepository
         output = Output(isLoadingMore: isLoadingMoreSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), albums: albumsSubject.asObservable(), error: errorSubject.asObservable())
         handleAlbumDataResponse()
         self.coordinator = coordinator as? AlbumListCoordinator
@@ -58,13 +56,14 @@ class AlbumsViewModel {
     
     private func fetchAlbums() {
         let albumsParameters = AlbumsParameters(artistName: artistName, page: page)
-        self.dataSourceProvider.setApiParameters(params: albumsParameters.dictionary)
-        self.dataSourceProvider.execute()
+        self.dataProvider.setApiParameters(params: albumsParameters.dictionary)
+        self.dataProvider.execute()
     }
 
     private func mapToAlbumResponse(albumListResponse: [AlbumModel]?)-> [Album] {
         if let albumListResponse = albumListResponse {
-            return albumListResponse.map{Album(id: $0.id ?? $0.name, name: $0.name, image: $0.images?.first?.url, numberOfPlays: $0.playcount)}
+            // i set album id with id and in case no i supposed that id is the name, because the api response some data does not have id
+            return albumListResponse.map{Album(id: $0.id ?? $0.name, name: $0.name, image: $0.images?.first?.url, numberOfPlays: "\($0.playcount ?? 0)")}
         }else {
             return []
         }
@@ -123,7 +122,7 @@ class AlbumsViewModel {
     }
     
     private func handleAlbumDataResponse() {
-        dataSourceProvider
+        dataProvider
             .observableResponse
             .subscribe(onNext: { [weak self] (response) in
                 guard let self = self else { return }

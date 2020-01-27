@@ -31,7 +31,7 @@ class SearchArtistViewModel {
     private var total: Int = 0
     private var page: Int = 1
     private var disposeBag = DisposeBag()
-    private let dataSourceProvider: DataProvider<ArtistResponseModel>!
+    private let dataProvider: DataProvider<ArtistResponseModel>!
     public var output: Output!
     var artistName: String = "" {
         didSet {
@@ -41,8 +41,8 @@ class SearchArtistViewModel {
         }
     }
     
-    init(dataSourceProvider: DataProvider<ArtistResponseModel>, coordinator: Coordinator?) {
-        self.dataSourceProvider = dataSourceProvider
+    init(dataProvider: DataProvider<ArtistResponseModel>, coordinator: Coordinator?) {
+        self.dataProvider = dataProvider
         output = Output(isLoadingMore: isLoadingMoreSubject.asObservable(), isRefresh: isRefreshSubject.asObservable(), isLoading: isLoadingSubject.asObservable(), artists: artistsSubject.asObservable(), error: errorSubject.asObservable())
         handleArtistDataResponse()
         self.coordinator = coordinator as? SearchArtistCoordinator
@@ -72,12 +72,13 @@ class SearchArtistViewModel {
 
     private func fetchArtists() {
         let searchArtistParameters = SearchArtistParameters(artistName: artistName, page: page)
-        self.dataSourceProvider.setApiParameters(params: searchArtistParameters.dictionary)
-        self.dataSourceProvider.execute()
+        self.dataProvider.setApiParameters(params: searchArtistParameters.dictionary)
+        self.dataProvider.execute()
     }
 
     private func mapToArtistResponse(artistListResponse: [ArtistModel]?)-> [Artist] {
         if let artistListResponse = artistListResponse {
+            // i set artist id with id and in case no i supposed that id is the name, because the api response some data does not have id
             return artistListResponse.map{Artist(id: $0.id ?? $0.name, name: $0.name, image: $0.images?.first?.url, numberOfListeners: $0.listeners)}
         }else {
             return []
@@ -120,7 +121,7 @@ class SearchArtistViewModel {
     }
     
     private func handleArtistDataResponse() {
-        dataSourceProvider
+        dataProvider
             .observableResponse
             .subscribe(onNext: { [weak self] (response) in
                 guard let self = self else { return }

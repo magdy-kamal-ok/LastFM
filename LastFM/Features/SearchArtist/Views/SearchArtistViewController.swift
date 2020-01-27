@@ -96,65 +96,65 @@ extension SearchArtistViewController {
    
     private func bindArtistError() {
         searchArtistViewModel
-        .output
-        .error
-        .bind {
-            [weak self](error) in
-            guard let self = self else {return}
-            self.showErrorAlert(error: error)
-        }.disposed(by: disposeBag)
+            .output
+            .error
+            .bind {
+                [weak self](error) in
+                guard let self = self else {return}
+                self.showErrorAlert(error: error)
+            }.disposed(by: disposeBag)
     }
     
     private func bindArtistList() {
         searchArtistViewModel
-        .output
-        .artists
-        .asObservable()
-        .subscribe(onNext: { [weak self] (artists) in
-            guard let self = self else {return}
-            self.artistList = artists
-            self.artistsTableView.reloadData()
-        }).disposed(by: disposeBag)
+            .output
+            .artists
+            .asObservable()
+            .subscribe(onNext: { [weak self] (artists) in
+                guard let self = self else {return}
+                self.artistList = artists
+                self.artistsTableView.reloadData()
+            }).disposed(by: disposeBag)
     }
     
     private func bindIsRefresh() {
         searchArtistViewModel
-               .output
-               .isRefresh
-               .asObservable()
-               .bind { [weak self](flag) in
-                       guard let self = self else {return}
-                       if flag {
-                           self.startRefreshTableView()
-                       }else {
-                           self.endRefreshTableView()
-                       }
-               }.disposed(by: disposeBag)
+            .output
+            .isRefresh
+            .asObservable()
+            .bind { [weak self](flag) in
+                guard let self = self else {return}
+                if flag {
+                   self.startRefreshTableView()
+                }else {
+                   self.endRefreshTableView()
+                }
+            }.disposed(by: disposeBag)
         
     }
     
     private func bindIsLoadingMore() {
         searchArtistViewModel
-        .output
-        .isLoadingMore
-        .asObservable()
-        .bind { [weak self](flag) in
-                guard let self = self else {return}
-                if flag {
-                    self.showLoadingMoreView()
-                }else {
-                    self.removeLoadingMoreView()
-                }
-        }.disposed(by: disposeBag)
+            .output
+            .isLoadingMore
+            .asObservable()
+            .bind { [weak self](flag) in
+                    guard let self = self else {return}
+                    if flag {
+                        self.showLoadingMoreView()
+                    }else {
+                        self.removeLoadingMoreView()
+                    }
+            }.disposed(by: disposeBag)
     }
     
     private func bindIsLoading() {
         searchArtistViewModel
-        .output
-        .isLoading
-        .map { !$0 }
-        .bind(to: self.loadingIndicator.rx.isHidden)
-        .disposed(by: self.disposeBag)
+            .output
+            .isLoading
+            .map { !$0 }
+            .bind(to: self.loadingIndicator.rx.isHidden)
+            .disposed(by: self.disposeBag)
     }
     
     private func bindSearchBar() {

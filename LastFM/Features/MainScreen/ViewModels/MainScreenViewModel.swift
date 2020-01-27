@@ -28,7 +28,7 @@ class MainScreenViewModel {
     private weak var coordinator: MainScreenCoordinator?
     
     init(coordinator: Coordinator?) {
-        self.albumDetailsRrepository = AlbumsDetialsRepository(dataSourceProvider: nil, cachingManager: RealmCachingManager(), artist: nil, album: nil)
+        self.albumDetailsRrepository = AlbumsDetialsRepository(dataProvider: nil, cachingManager: RealmCachingManager(), artist: nil, album: nil)
         output = Output(isLoading: isLoadingSubject.asObservable(), albumDetails: self.albumDetailsRrepository.output.albumDetailsList.asObservable(), error: errorSubject.asObservable())
         self.coordinator = coordinator as? MainScreenCoordinator
         

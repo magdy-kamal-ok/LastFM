@@ -12,5 +12,5 @@ public struct Album {
     var id: String!
     var name: String?
     var image: String?
-    var numberOfPlays: Int?
+    var numberOfPlays: String?
 }

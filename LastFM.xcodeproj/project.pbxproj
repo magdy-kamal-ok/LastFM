@@ -15,6 +15,13 @@
 		0113CE8723DE02CE00F7C51E /* AlbumDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0113CE8623DE02CE00F7C51E /* AlbumDetailsCoordinator.swift */; };
 		0113CE8923DE179E00F7C51E /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0113CE8823DE179E00F7C51E /* UIImageViewExtension.swift */; };
 		0113CE8B23DE17AB00F7C51E /* RealmExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0113CE8A23DE17AB00F7C51E /* RealmExtension.swift */; };
+		01FAB23523DF529C008A5400 /* AlbumsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB23423DF529C008A5400 /* AlbumsViewModelTests.swift */; };
+		01FAB23723DF58CE008A5400 /* AlbumsDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB23623DF58CE008A5400 /* AlbumsDetailsViewModelTests.swift */; };
+		01FAB23923DF5F43008A5400 /* AlbumsDetailsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB23823DF5F43008A5400 /* AlbumsDetailsRepositoryTests.swift */; };
+		01FAB23B23DF6436008A5400 /* SearchArtistUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB23A23DF6436008A5400 /* SearchArtistUITests.swift */; };
+		01FAB23D23DF6996008A5400 /* AlbumsListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB23C23DF6996008A5400 /* AlbumsListUITests.swift */; };
+		01FAB23F23DF7558008A5400 /* AlbumDetailsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB23E23DF7558008A5400 /* AlbumDetailsUITests.swift */; };
+		01FAB24123DF7A25008A5400 /* MainScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB24023DF7A25008A5400 /* MainScreenUITests.swift */; };
 		040F4BAA23DCCB1A00ED71FB /* AlbumDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F4BA923DCCB1A00ED71FB /* AlbumDetailModel.swift */; };
 		0426061A23DA4C91005D2608 /* ArtistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0426061823DA4C91005D2608 /* ArtistTableViewCell.swift */; };
 		0426061B23DA4C91005D2608 /* ArtistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0426061923DA4C91005D2608 /* ArtistTableViewCell.xib */; };
@@ -61,8 +68,6 @@
 		0472049523D7B4E00086B7B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0472049423D7B4E00086B7B0 /* AppDelegate.swift */; };
 		0472049B23D7B4E20086B7B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0472049A23D7B4E20086B7B0 /* Assets.xcassets */; };
 		047204A123D7B4E20086B7B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0472049F23D7B4E20086B7B0 /* LaunchScreen.storyboard */; };
-		047204AC23D7B4E20086B7B0 /* LastFMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047204AB23D7B4E20086B7B0 /* LastFMTests.swift */; };
-		047204B723D7B4E20086B7B0 /* LastFMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047204B623D7B4E20086B7B0 /* LastFMUITests.swift */; };
 		0488789D23DA3A8A00290EAF /* BaseSearchArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488789C23DA3A8A00290EAF /* BaseSearchArtistViewController.swift */; };
 		04B7C15923DEAC8F00914952 /* MockedNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7C15823DEAC8F00914952 /* MockedNetworkManager.swift */; };
 		04B7C15B23DEAF9600914952 /* ArtistsModelStub.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B7C15A23DEAF9600914952 /* ArtistsModelStub.json */; };
@@ -118,6 +123,13 @@
 		0113CE8623DE02CE00F7C51E /* AlbumDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsCoordinator.swift; sourceTree = "<group>"; };
 		0113CE8823DE179E00F7C51E /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		0113CE8A23DE17AB00F7C51E /* RealmExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmExtension.swift; sourceTree = "<group>"; };
+		01FAB23423DF529C008A5400 /* AlbumsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewModelTests.swift; sourceTree = "<group>"; };
+		01FAB23623DF58CE008A5400 /* AlbumsDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		01FAB23823DF5F43008A5400 /* AlbumsDetailsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsDetailsRepositoryTests.swift; sourceTree = "<group>"; };
+		01FAB23A23DF6436008A5400 /* SearchArtistUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistUITests.swift; sourceTree = "<group>"; };
+		01FAB23C23DF6996008A5400 /* AlbumsListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsListUITests.swift; sourceTree = "<group>"; };
+		01FAB23E23DF7558008A5400 /* AlbumDetailsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsUITests.swift; sourceTree = "<group>"; };
+		01FAB24023DF7A25008A5400 /* MainScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenUITests.swift; sourceTree = "<group>"; };
 		040F4BA923DCCB1A00ED71FB /* AlbumDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailModel.swift; sourceTree = "<group>"; };
 		0426061823DA4C91005D2608 /* ArtistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistTableViewCell.swift; sourceTree = "<group>"; };
 		0426061923DA4C91005D2608 /* ArtistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArtistTableViewCell.xib; sourceTree = "<group>"; };
@@ -167,10 +179,8 @@
 		047204A023D7B4E20086B7B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		047204A223D7B4E20086B7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		047204A723D7B4E20086B7B0 /* LastFMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LastFMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		047204AB23D7B4E20086B7B0 /* LastFMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFMTests.swift; sourceTree = "<group>"; };
 		047204AD23D7B4E20086B7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		047204B223D7B4E20086B7B0 /* LastFMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LastFMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		047204B623D7B4E20086B7B0 /* LastFMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFMUITests.swift; sourceTree = "<group>"; };
 		047204B823D7B4E20086B7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0488789C23DA3A8A00290EAF /* BaseSearchArtistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSearchArtistViewController.swift; sourceTree = "<group>"; };
 		04B7C15823DEAC8F00914952 /* MockedNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedNetworkManager.swift; sourceTree = "<group>"; };
@@ -566,13 +576,15 @@
 				04B7C16623DEB4F100914952 /* Models */,
 				04B7C15723DEAC6700914952 /* Mocks */,
 				04B7C15423DEAB6300914952 /* Stubs */,
-				047204AB23D7B4E20086B7B0 /* LastFMTests.swift */,
 				047204AD23D7B4E20086B7B0 /* Info.plist */,
 				04FD533D23DE2CE0002C7BA4 /* RealmCachingManagerTests.swift */,
 				04B7C16023DEB22B00914952 /* RequestFactoryTests.swift */,
 				04B7C16223DEB3ED00914952 /* DataProviderTests.swift */,
 				04B7C16423DEB43100914952 /* NetworkParserTests.swift */,
 				04B7C16D23DEC39800914952 /* SearchArtistViewModelTests.swift */,
+				01FAB23423DF529C008A5400 /* AlbumsViewModelTests.swift */,
+				01FAB23623DF58CE008A5400 /* AlbumsDetailsViewModelTests.swift */,
+				01FAB23823DF5F43008A5400 /* AlbumsDetailsRepositoryTests.swift */,
 			);
 			path = LastFMTests;
 			sourceTree = "<group>";
@@ -580,8 +592,11 @@
 		047204B523D7B4E20086B7B0 /* LastFMUITests */ = {
 			isa = PBXGroup;
 			children = (
-				047204B623D7B4E20086B7B0 /* LastFMUITests.swift */,
 				047204B823D7B4E20086B7B0 /* Info.plist */,
+				01FAB23A23DF6436008A5400 /* SearchArtistUITests.swift */,
+				01FAB23C23DF6996008A5400 /* AlbumsListUITests.swift */,
+				01FAB23E23DF7558008A5400 /* AlbumDetailsUITests.swift */,
+				01FAB24023DF7A25008A5400 /* MainScreenUITests.swift */,
 			);
 			path = LastFMUITests;
 			sourceTree = "<group>";
@@ -1011,12 +1026,14 @@
 			files = (
 				04B7C16823DEB51800914952 /* ArtistResponseModelStub.swift in Sources */,
 				04B7C16C23DEB7EA00914952 /* MockedRequestFactory.swift in Sources */,
+				01FAB23723DF58CE008A5400 /* AlbumsDetailsViewModelTests.swift in Sources */,
 				04B7C16123DEB22B00914952 /* RequestFactoryTests.swift in Sources */,
 				04B7C16523DEB43100914952 /* NetworkParserTests.swift in Sources */,
-				047204AC23D7B4E20086B7B0 /* LastFMTests.swift in Sources */,
+				01FAB23923DF5F43008A5400 /* AlbumsDetailsRepositoryTests.swift in Sources */,
 				04B7C16E23DEC39800914952 /* SearchArtistViewModelTests.swift in Sources */,
 				04B7C15923DEAC8F00914952 /* MockedNetworkManager.swift in Sources */,
 				04B7C16323DEB3ED00914952 /* DataProviderTests.swift in Sources */,
+				01FAB23523DF529C008A5400 /* AlbumsViewModelTests.swift in Sources */,
 				04FD533E23DE2CE0002C7BA4 /* RealmCachingManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1025,7 +1042,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				047204B723D7B4E20086B7B0 /* LastFMUITests.swift in Sources */,
+				01FAB24123DF7A25008A5400 /* MainScreenUITests.swift in Sources */,
+				01FAB23F23DF7558008A5400 /* AlbumDetailsUITests.swift in Sources */,
+				01FAB23D23DF6996008A5400 /* AlbumsListUITests.swift in Sources */,
+				01FAB23B23DF6436008A5400 /* SearchArtistUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

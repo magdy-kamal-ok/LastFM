@@ -108,48 +108,48 @@ extension AlbumDetailsViewController {
     
     private func bindAlbumsDetailsError() {
         albumDetailsViewModel
-        .output
-        .error
-        .bind {
-            [weak self](error) in
-            guard let self = self else {return}
-            self.showErrorAlert(error: error)
-        }.disposed(by: disposeBag)
+            .output
+            .error
+            .bind {
+                [weak self](error) in
+                guard let self = self else {return}
+                self.showErrorAlert(error: error)
+            }.disposed(by: disposeBag)
     }
     
     private func bindDownloadButtonImage() {
         albumDetailsViewModel
-        .output
-        .isCached
-        .asObservable().subscribe(onNext: { [weak self] (isCached) in
-            guard let self = self else {return}
-            if isCached {
-                self.downloadButton.setImage(UIImage(named: "ic-delete"), for: .normal)
-            }else {
-                self.downloadButton.setImage(UIImage(named: "ic-download"), for: .normal)
-            }
-        }).disposed(by: disposeBag)
+            .output
+            .isCached
+            .asObservable().subscribe(onNext: { [weak self] (isCached) in
+                guard let self = self else {return}
+                if isCached {
+                    self.downloadButton.setImage(UIImage(named: "ic-delete"), for: .normal)
+                }else {
+                    self.downloadButton.setImage(UIImage(named: "ic-download"), for: .normal)
+                }
+            }).disposed(by: disposeBag)
     }
     
     private func bindTrackList() {
         albumDetailsViewModel
-        .output
-        .albumDetails
-        .map{$0.tracks}
-        .asObservable().subscribe(onNext: { [weak self] (tracks) in
-            guard let self = self else {return}
-            self.tracks = tracks
-            self.tracksCollectionView.reloadData()
-        }).disposed(by: disposeBag)
+            .output
+            .albumDetails
+            .map{$0.tracks}
+            .asObservable().subscribe(onNext: { [weak self] (tracks) in
+                guard let self = self else {return}
+                self.tracks = tracks
+                self.tracksCollectionView.reloadData()
+            }).disposed(by: disposeBag)
     }
    
     private func bindIsLoading() {
         albumDetailsViewModel
-        .output
-        .isLoading
-        .map { !$0 }
-        .bind(to: self.loadingIndicator.rx.isHidden)
-        .disposed(by: self.disposeBag)
+            .output
+            .isLoading
+            .map { !$0 }
+            .bind(to: self.loadingIndicator.rx.isHidden)
+            .disposed(by: self.disposeBag)
     }
     
 }

@@ -21,8 +21,8 @@ struct AlbumDetailModel {
         self.tracks = tracks
     }
     init(localAlbumDetailsModel: LocalAlbumDetailsModel) {
-        self.album = Album(id: localAlbumDetailsModel.album?.albumId, name: localAlbumDetailsModel.album?.name, image: localAlbumDetailsModel.album?.image, numberOfPlays: Int(localAlbumDetailsModel.album?.numberOfPlays ?? "0"))
-        self.artist = Artist(id: localAlbumDetailsModel.artist?.artistId, name: localAlbumDetailsModel.artist?.name, image: localAlbumDetailsModel.artist?.image, numberOfListeners: localAlbumDetailsModel.album?.numberOfPlays)
+        self.album = Album(id: localAlbumDetailsModel.album?.albumId, name: localAlbumDetailsModel.album?.name, image: localAlbumDetailsModel.album?.image, numberOfPlays: localAlbumDetailsModel.album?.numberOfPlays)
+        self.artist = Artist(id: localAlbumDetailsModel.artist?.artistId, name: localAlbumDetailsModel.artist?.name, image: localAlbumDetailsModel.artist?.image, numberOfListeners: localAlbumDetailsModel.artist?.numberOfListners)
         self.tracks = localAlbumDetailsModel.tracks.map{Track(name: $0.name, duration: $0.duration)}
     }
 }

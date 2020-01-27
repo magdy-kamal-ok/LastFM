@@ -16,7 +16,7 @@ class SearchArtistViewModelTests: XCTestCase {
     
     override func setUp() {
         let dataProvider = DataProvider<ArtistResponseModel>(requestHandler: MockedRequestFactory(fileName: "ArtistsModelStub"), apiClientManager: MockedNetworkManager(), parser: CodableParserManager())
-        sut = SearchArtistViewModel(dataSourceProvider: dataProvider, coordinator: nil)
+        sut = SearchArtistViewModel(dataProvider: dataProvider, coordinator: nil)
     }
 
     override func tearDown() {
