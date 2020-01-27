@@ -39,7 +39,7 @@ class MainScreenViewController: UIViewController {
     }
 
     func addRightNavItem() {
-        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "ic-search"), style: .plain, target: self, action:#selector(didPressSearchIcon))
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic-search"), style: .plain, target: self, action:#selector(didPressSearchIcon))
         rightBarButtonItem.tintColor = UIColor.black
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }

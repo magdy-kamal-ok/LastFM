@@ -57,14 +57,14 @@ class AlbumsViewModel {
     }
     
     private func fetchAlbums() {
-        let albumsParameters = AlbumsParameters.init(artistName: artistName, page: page)
+        let albumsParameters = AlbumsParameters(artistName: artistName, page: page)
         self.dataSourceProvider.setApiParameters(params: albumsParameters.dictionary)
         self.dataSourceProvider.execute()
     }
 
     private func mapToAlbumResponse(albumListResponse: [AlbumModel]?)-> [Album] {
         if let albumListResponse = albumListResponse {
-            return albumListResponse.map{Album.init(id: $0.id ?? $0.name, name: $0.name, image: $0.images?.first?.url, numberOfPlays: $0.playcount)}
+            return albumListResponse.map{Album(id: $0.id ?? $0.name, name: $0.name, image: $0.images?.first?.url, numberOfPlays: $0.playcount)}
         }else {
             return []
         }

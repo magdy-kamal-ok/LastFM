@@ -34,6 +34,7 @@ class DataProvider <R: Decodable> {
     public func setApiParameters(params: [String: Any]?) {
         self.requestHandler.setRequestParameters(params: params)
     }
+    
     private func getRemoteData() {
         if let observable:Observable<ResultModel> = self.fetchResponse(apiComponents: self.requestHandler) {
             observable.subscribe({ [weak self](subObj) in
@@ -82,7 +83,7 @@ class DataProvider <R: Decodable> {
     }
     
     private func createCustomError(localError: LocalError) -> ErrorModel {
-        var error = ErrorModel.init()
+        var error = ErrorModel()
         error.code = localError.errorCode
         error.message = localError.localizedDescription
         error.url = self.requestHandler.getApiUrl()

@@ -28,7 +28,7 @@ class AlamofireApiClientManager: NetworkManagerProtocol {
             let encoding = self.getEncoding(type: apiComponents.getRequestEncoding())
             let headers = self.getHeaders(headers: apiComponents.getRequestHeaders())
             // let responseType = apiComponents.getResponseType()
-            let isReachable = NetworkReachabilityManager.init()?.isReachable == true
+            let isReachable = NetworkReachabilityManager()?.isReachable == true
             if !isReachable {
                 let customError = ErrorModel(code:  LocalError.noInternetConnection.errorCode, message: LocalError.noInternetConnection.localizedDescription, error: nil, url: url)
                 observer.onNext(ResultModel.Faliure(customError))
@@ -64,7 +64,7 @@ class AlamofireApiClientManager: NetworkManagerProtocol {
     }
     
     private func getHTTPMethod(method: RequestMethod) -> HTTPMethod {
-        return HTTPMethod.init(rawValue: method.rawValue) ?? HTTPMethod.get
+        return HTTPMethod(rawValue: method.rawValue) ?? HTTPMethod.get
     }
     
     private func getEncoding(type: RequestEncoding?) -> ParameterEncoding {

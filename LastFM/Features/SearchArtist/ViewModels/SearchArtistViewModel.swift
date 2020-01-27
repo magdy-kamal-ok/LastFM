@@ -71,14 +71,14 @@ class SearchArtistViewModel {
     }
 
     private func fetchArtists() {
-        let searchArtistParameters = SearchArtistParameters.init(artistName: artistName, page: page)
+        let searchArtistParameters = SearchArtistParameters(artistName: artistName, page: page)
         self.dataSourceProvider.setApiParameters(params: searchArtistParameters.dictionary)
         self.dataSourceProvider.execute()
     }
 
     private func mapToArtistResponse(artistListResponse: [ArtistModel]?)-> [Artist] {
         if let artistListResponse = artistListResponse {
-            return artistListResponse.map{Artist.init(id: $0.id ?? $0.name, name: $0.name, image: $0.images?.first?.url, numberOfListeners: $0.listeners)}
+            return artistListResponse.map{Artist(id: $0.id ?? $0.name, name: $0.name, image: $0.images?.first?.url, numberOfListeners: $0.listeners)}
         }else {
             return []
         }

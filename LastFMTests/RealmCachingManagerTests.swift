@@ -15,7 +15,7 @@ class RealmCachingManagerTests: XCTestCase {
     var sut: RealmCachingManager?
     
     override func setUp() {
-        var realmConf = Realm.Configuration.init()
+        var realmConf = Realm.Configuration()
         realmConf.inMemoryIdentifier = "TestFirst"
         guard let realm = try?(Realm(configuration: realmConf)) else {return}
         sut = RealmCachingManager(realm: realm)

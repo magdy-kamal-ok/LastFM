@@ -1,0 +1,298 @@
+
+{
+    "album": {
+        "name": "Blockbasta",
+        "artist": "ASD",
+        "url": "https://www.last.fm/music/ASD/Blockbasta",
+        "image": [
+            {
+                "#text": "https://lastfm.freetls.fastly.net/i/u/34s/7bc5bd6d24b73cfbeb79edd1e26e5056.png",
+                "size": "small"
+            },
+            {
+                "#text": "https://lastfm.freetls.fastly.net/i/u/64s/7bc5bd6d24b73cfbeb79edd1e26e5056.png",
+                "size": "medium"
+            },
+            {
+                "#text": "https://lastfm.freetls.fastly.net/i/u/174s/7bc5bd6d24b73cfbeb79edd1e26e5056.png",
+                "size": "large"
+            },
+            {
+                "#text": "https://lastfm.freetls.fastly.net/i/u/300x300/7bc5bd6d24b73cfbeb79edd1e26e5056.png",
+                "size": "extralarge"
+            },
+            {
+                "#text": "https://lastfm.freetls.fastly.net/i/u/300x300/7bc5bd6d24b73cfbeb79edd1e26e5056.png",
+                "size": "mega"
+            },
+            {
+                "#text": "https://lastfm.freetls.fastly.net/i/u/300x300/7bc5bd6d24b73cfbeb79edd1e26e5056.png",
+                "size": ""
+            }
+        ],
+        "listeners": "5286",
+        "playcount": "68755",
+        "tracks": {
+            "track": [
+                {
+                    "name": "Die Partei",
+                    "url": "https://www.last.fm/music/ASD/_/Die+Partei",
+                    "duration": "173",
+                    "@attr": {
+                        "rank": "1"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Blockbasta",
+                    "url": "https://www.last.fm/music/ASD/_/Blockbasta",
+                    "duration": "219",
+                    "@attr": {
+                        "rank": "2"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Mittelfinga hoch",
+                    "url": "https://www.last.fm/music/ASD/_/Mittelfinga+hoch",
+                    "duration": "164",
+                    "@attr": {
+                        "rank": "3"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Deadline",
+                    "url": "https://www.last.fm/music/ASD/_/Deadline",
+                    "duration": "239",
+                    "@attr": {
+                        "rank": "4"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Bruda",
+                    "url": "https://www.last.fm/music/ASD/_/Bruda",
+                    "duration": "233",
+                    "@attr": {
+                        "rank": "5"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Überall is Krieg",
+                    "url": "https://www.last.fm/music/ASD/_/%C3%9Cberall+is+Krieg",
+                    "duration": "219",
+                    "@attr": {
+                        "rank": "6"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Tortellini Augen",
+                    "url": "https://www.last.fm/music/ASD/_/Tortellini+Augen",
+                    "duration": "213",
+                    "@attr": {
+                        "rank": "7"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Legendär / Populär",
+                    "url": "https://www.last.fm/music/ASD/_/Legend%C3%A4r+%2F+Popul%C3%A4r",
+                    "duration": "254",
+                    "@attr": {
+                        "rank": "8"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Ausrasta",
+                    "url": "https://www.last.fm/music/ASD/_/Ausrasta",
+                    "duration": "222",
+                    "@attr": {
+                        "rank": "9"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Airhorn",
+                    "url": "https://www.last.fm/music/ASD/_/Airhorn",
+                    "duration": "176",
+                    "@attr": {
+                        "rank": "10"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Antihaltung",
+                    "url": "https://www.last.fm/music/ASD/_/Antihaltung",
+                    "duration": "184",
+                    "@attr": {
+                        "rank": "11"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Mensch gegen Maschine",
+                    "url": "https://www.last.fm/music/ASD/_/Mensch+gegen+Maschine",
+                    "duration": "244",
+                    "@attr": {
+                        "rank": "12"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Non",
+                    "url": "https://www.last.fm/music/ASD/_/Non",
+                    "duration": "202",
+                    "@attr": {
+                        "rank": "13"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Grosses Finale",
+                    "url": "https://www.last.fm/music/ASD/_/Grosses+Finale",
+                    "duration": "227",
+                    "@attr": {
+                        "rank": "14"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                },
+                {
+                    "name": "Ich seh was",
+                    "url": "https://www.last.fm/music/ASD/_/Ich+seh+was",
+                    "duration": "201",
+                    "@attr": {
+                        "rank": "15"
+                    },
+                    "streamable": {
+                        "#text": "0",
+                        "fulltrack": "0"
+                    },
+                    "artist": {
+                        "name": "ASD",
+                        "mbid": "868f7043-9de6-4b62-af8c-fcceb16b4bd6",
+                        "url": "https://www.last.fm/music/ASD"
+                    }
+                }
+            ]
+        },
+        "tags": {
+            "tag": []
+        }
+    }
+}

@@ -11,7 +11,7 @@ import UIKit
 public struct AlbumsDetailsBuilder {
 
     public static func viewController(artist: Artist, album: Album, coordinator: Coordinator) -> UIViewController {
-        let requestHandler = RequestFactory.init(url: Constants.baseUrl)
+        let requestHandler = RequestFactory(url: Constants.baseUrl)
         let dataSourceProvider = DataProvider<AlbumDetailsResponseModel>(requestHandler: requestHandler)
         let albumDetailsViewModel = AlbumDetailsViewModel(dataSourceProvider: dataSourceProvider, artist: artist, album: album, coordinator: coordinator)
         let viewController = AlbumDetailsViewController(with: albumDetailsViewModel, artist: artist, album: album)

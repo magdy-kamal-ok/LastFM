@@ -99,7 +99,7 @@ class AlbumsDetialsRepository  {
         let localAlbumModel = LocalAlbumModel(albumId: album.id, name: album.name, image: album.image, numberOfPlays: albumDetailsDesponse.albumDetailsModel?.playcount)
         var localTracks: [LocalTrackModel] = []
         if let tracks = albumDetailsDesponse.albumDetailsModel?.tracksModel?.tracks {
-         localTracks = tracks.map{LocalTrackModel.init(name: $0.name, duration: $0.duration)}
+         localTracks = tracks.map{LocalTrackModel(name: $0.name, duration: $0.duration)}
         }
         let localAlbumDetailsModel = LocalAlbumDetailsModel(artist: localArtistModel, album: localAlbumModel, tracks: localTracks)
         if let _ = cachingManager.insert(genericDataModel: localAlbumDetailsModel) {
@@ -112,7 +112,7 @@ class AlbumsDetialsRepository  {
     
     func deleteAlbumFromCache() {
         guard let album = album, let artist = artist else {return}
-        let predicate = NSPredicate.init(format: "artistId=%@ And albumId=%@", artist.id, (album.id)!)
+        let predicate = NSPredicate(format: "artistId=%@ And albumId=%@", artist.id, (album.id)!)
         if let _ =  cachingManager.delete(predicate: predicate, type: LocalAlbumDetailsModel.self) {
                 isCachedSubject.accept(false)
             }else {
@@ -128,7 +128,7 @@ class AlbumsDetialsRepository  {
     
     public func checkIfIsAlbumAlreadySaved() {
         guard let album = album, let artist = artist else {return}
-        if let localAlbumDetails = cachingManager.fetch(predicate: NSPredicate.init(format: "artistId=%@ And albumId=%@", artist.id, (album.id)!), type: LocalAlbumDetailsModel.self) {
+        if let localAlbumDetails = cachingManager.fetch(predicate: NSPredicate(format: "artistId=%@ And albumId=%@", artist.id, (album.id)!), type: LocalAlbumDetailsModel.self) {
             if localAlbumDetails.albumId == album.id {
                 albumDetailsModelSubject.accept(AlbumDetailModel(localAlbumDetailsModel: localAlbumDetails))
 

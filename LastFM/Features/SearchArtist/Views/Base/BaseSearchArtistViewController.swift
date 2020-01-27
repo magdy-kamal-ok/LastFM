@@ -106,7 +106,7 @@ class BaseSearchArtistViewController: UIViewController {
     }
 
     func showLoadingMoreView() -> Void {
-        paginationIndicator = UIActivityIndicatorView.init()
+        paginationIndicator = UIActivityIndicatorView()
         paginationIndicator?.color = UIColor.gray
         paginationIndicator?.sizeToFit()
         paginationIndicator?.isAccessibilityElement = true
@@ -161,7 +161,7 @@ extension BaseSearchArtistViewController: UITableViewDataSource {
 
     @objc func getCustomCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        return UITableViewCell.init()
+        return UITableViewCell()
     }
 
     @objc func didSelectCellAt(indexPath: IndexPath) {

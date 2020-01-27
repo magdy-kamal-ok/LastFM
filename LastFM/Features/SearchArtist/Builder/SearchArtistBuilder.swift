@@ -11,7 +11,7 @@ public struct SearchArtistBuilder {
 
 
     public static func viewController(coordinator: Coordinator) -> UIViewController {
-        let requestHandler = RequestFactory.init(url: Constants.baseUrl)
+        let requestHandler = RequestFactory(url: Constants.baseUrl)
         let dataSourceProvider = DataProvider<ArtistResponseModel>(requestHandler: requestHandler)
         let searchArtistViewModel = SearchArtistViewModel(dataSourceProvider: dataSourceProvider, coordinator: coordinator)
         let viewController = SearchArtistViewController(with: searchArtistViewModel)
