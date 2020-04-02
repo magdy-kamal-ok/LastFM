@@ -48,20 +48,6 @@ class AppCoordinator: NSObject, Coordinator
         addViewToNavigationStack(coordinator: child)
         child.start()
     }
-//    func showTeamsView(with competition : Competitions?) {
-//        let child = TeamsCoordinator(navigationController: navigationController)
-//        child.competitioon = competition
-//        child.parentCoordinator = self
-//        addViewToNavigationStack(coordinator: child)
-//        child.start()
-//    }
-//    func showMatchesView(with team : TeamsModel?) {
-//        let child = MatchCoordinator(navigationController: navigationController)
-//        child.team = team
-//        child.parentCoordinator = self
-//        addViewToNavigationStack(coordinator: child)
-//        child.start()
-//    }
 
     func addViewToNavigationStack(coordinator : Coordinator){
         navigationController.delegate = self
